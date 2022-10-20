@@ -8,7 +8,40 @@
 [Entity Relationship Diagram](https://lucid.app/lucidchart/05d518ab-381b-47c5-bbfc-38a308cae342/edit?beaconFlowId=96E5F1AA5443198A&page=0_0&invitationId=inv_6c3e2cc7-2346-4632-b24c-170bea3b9915#)
 ![Entity Relationship Diagram](./Assets/erd.png)
 
-## Psudo Code
+## Psudo Code brainstorm
+
+### Back End API
+getUser(params.userId)
+    return user data
+
+createUser(name)
+    Post request
+        generate new user document in user cluster
+    forward userd to unique url
+    return user url id
+
+getDeck(params.userId)
+    return user deck info
+
+createDeck(params.userId,req.body)
+    return user created deck info
+
+updateDeck(params.userId,req.body)
+    return user updated deck info
+
+deleteDeck(params.userId)
+    return status
+
+getAllRaces()
+    return all race objects
+
+getAllAttackUnits(raceState)
+    return all attack units race
+
+getAllDefensiveUnits(raceState)
+    return all defensive units race
+
+
 
 ### Home Screen
 If param player id valid
