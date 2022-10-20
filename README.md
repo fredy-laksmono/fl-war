@@ -38,5 +38,21 @@ Players will move semi asynchronously to build and command their unit. Players n
 
 ---
 
+## Technology used
+
+Full-Stack MERN
+* MongoDB
+* Express(.js)
+* React(.js)
+* Node(.js)
+
+
+---
+
 ## Trelo Board
 [My Project Board](https://trello.com/b/bkrS1lJi/fl-war)
+
+---
+
+## Credit
+
