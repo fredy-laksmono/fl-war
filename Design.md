@@ -115,6 +115,7 @@ Race core specialty
         min shield unit
         min regen unit
         medium cost
+        medium build speed
     race 2
         high hp
         high armor
@@ -122,7 +123,7 @@ Race core specialty
         no shield unit
         no regen
         high cost
-        slow build
+        slow build speed
     race 3
         low hp
         low armor
@@ -130,6 +131,7 @@ Race core specialty
         high attack
         no regen
         high cost
+        medium build speed
     race 4
         medium hp
         no armor
@@ -137,7 +139,7 @@ Race core specialty
         medium damage
         all regen unit
         low cost
-        fast build
+        fast build speed
 
 
 
