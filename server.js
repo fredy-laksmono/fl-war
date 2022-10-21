@@ -2,6 +2,8 @@ const express = require("express");
 const routes = require("./routes");
 const db = require("./db");
 const logger = require("morgan");
+const cors = require("cors");
+const { urlencoded } = require("express");
 
 // require() imports and middleware here ^ ///////
 
@@ -11,6 +13,8 @@ const app = express();
 
 app.use(express.json());
 app.use(logger("dev"));
+app.use(cors());
+app.use(urlencoded({ extended: false }));
 
 // app.use() middleware here ^ ///////////////////
 
