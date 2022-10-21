@@ -1,7 +1,5 @@
 import "./App.css";
 import Nav from "./components/Nav";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import HowToPlay from "./components/HowToPlay";
@@ -16,6 +14,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/new" element={<Home new="true" />} />
           <Route path="/howToPlay" element={<HowToPlay />} />
           <Route path="/about" element={<About />} />
         </Routes>
