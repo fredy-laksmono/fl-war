@@ -1,12 +1,16 @@
 const { User } = require("../models");
 
 const createUser = async (req, res) => {
-  console.log("createUser controller called");
   const createNewUser = await User.create(req.body);
   res.send(createNewUser);
-  //res.send(req.body);
+};
+
+const getUser = async (req, res) => {
+  const userData = await User.findById(req.params.userId);
+  res.send(userData);
 };
 
 module.exports = {
-  createUser
+  createUser,
+  getUser
 };

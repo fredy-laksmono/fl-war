@@ -38,7 +38,7 @@ const Home = (params) => {
       name: "",
       email: ""
     });
-    navigate(`/new/${newUser.data._id}`);
+    navigate(`/new/${newUser.data._id}/${newUser.data.name}`);
   };
 
   if (params.new) {
