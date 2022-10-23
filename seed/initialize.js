@@ -1,24 +1,32 @@
 const db = require("../db");
 const { User } = require("../models");
 const { Race } = require("../models");
+const { AttackUnit } = require("../models");
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 const main = async () => {
-  // const user1 = await new User({
-  //   name: "F L",
-  //   deck_id: true
+  // const race1 = await new Race({
+  //   name: "Terran"
   // });
-  // user1.save();
+  // race1.save();
+  // console.log("Created race1!");
 
-  // console.log("Created user!");
-
-  const race1 = await new Race({
-    name: "Terran"
+  const attackUnit1 = await new AttackUnit({
+    race_id: "635535d64172fa8cf5010f26",
+    name: "Light Unit",
+    maxHealth: 60,
+    health: 60,
+    damage: 30,
+    armor: 1,
+    maxShield: 0,
+    shield: 0,
+    regen: false,
+    cost: 10,
+    buildTime: 1
   });
-  race1.save();
-
-  console.log("Created race1!");
+  attackUnit1.save();
+  console.log("Attack Unit 1 created!");
 };
 
 const run = async () => {
