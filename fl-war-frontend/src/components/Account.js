@@ -21,9 +21,7 @@ const Account = (props) => {
       .catch((error) => {
         console.log("this is error", error);
       });
-    console.log("this is userObject after checking", userObject);
     if (userObject.data._id === id) {
-      console.log("user found");
       updatePlayerData({
         name: userObject.data.name,
         id: userObject.data._id

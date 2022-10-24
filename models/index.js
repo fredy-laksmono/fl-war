@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const userSchema = require("./User");
-const raceSchema = require("./Race");
-const attackUnitSchema = require("./AttackUnit");
-const defenseUnitSchema = require("./DefenseUnit");
+const userSchema = require("./user");
+const raceSchema = require("./race");
+const attackUnitSchema = require("./attackUnit");
+const defenseUnitSchema = require("./defenseUnit");
 
 const User = mongoose.model("User", userSchema);
 const Race = mongoose.model("Race", raceSchema);

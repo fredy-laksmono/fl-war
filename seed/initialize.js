@@ -12,6 +12,13 @@ const main = async () => {
   // });
   // await race1.save();
   // console.log("Created race1!");
+
+  const Scien = await new Race({
+    name: "Scien"
+  });
+  await Scien.save();
+  console.log("Created Scien race!");
+
   // const attackUnit1 = await new AttackUnit({
   //   race_id: "635535d64172fa8cf5010f26",
   //   name: "Light Unit",
@@ -88,56 +95,56 @@ const main = async () => {
   // await attackUnit5.save();
   // console.log("Attack Unit 5 created!");
 
-  const defenseUnit1 = await new DefenseUnit({
-    race_id: "635535d64172fa8cf5010f26",
-    name: "Scout Tower",
-    maxHealth: 100,
-    health: 100,
-    damage: 50,
-    armor: 2,
-    maxShield: 0,
-    shield: 0,
-    regen: false,
-    cost: 20,
-    buildTime: 1,
-    isPowered: false
-  });
-  await defenseUnit1.save();
-  console.log("Scout Tower created!");
+  // const defenseUnit1 = await new DefenseUnit({
+  //   race_id: "635535d64172fa8cf5010f26",
+  //   name: "Scout Tower",
+  //   maxHealth: 100,
+  //   health: 100,
+  //   damage: 50,
+  //   armor: 2,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: false,
+  //   cost: 20,
+  //   buildTime: 1,
+  //   isPowered: false
+  // });
+  // await defenseUnit1.save();
+  // console.log("Scout Tower created!");
 
-  const defenseUnit2 = await new DefenseUnit({
-    race_id: "635535d64172fa8cf5010f26",
-    name: "Heavy Tower",
-    maxHealth: 200,
-    health: 200,
-    damage: 0,
-    armor: 5,
-    maxShield: 0,
-    shield: 0,
-    regen: false,
-    cost: 40,
-    buildTime: 2,
-    isPowered: false
-  });
-  await defenseUnit2.save();
-  console.log("Heavy Tower created!");
+  // const defenseUnit2 = await new DefenseUnit({
+  //   race_id: "635535d64172fa8cf5010f26",
+  //   name: "Heavy Tower",
+  //   maxHealth: 200,
+  //   health: 200,
+  //   damage: 0,
+  //   armor: 5,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: false,
+  //   cost: 40,
+  //   buildTime: 2,
+  //   isPowered: false
+  // });
+  // await defenseUnit2.save();
+  // console.log("Heavy Tower created!");
 
-  const defenseUnit3 = await new DefenseUnit({
-    race_id: "635535d64172fa8cf5010f26",
-    name: "Shield Tower",
-    maxHealth: 100,
-    health: 100,
-    damage: 50,
-    armor: 2,
-    maxShield: 100,
-    shield: 100,
-    regen: false,
-    cost: 40,
-    buildTime: 2,
-    isPowered: false
-  });
-  await defenseUnit3.save();
-  console.log("Shield Tower created!");
+  // const defenseUnit3 = await new DefenseUnit({
+  //   race_id: "635535d64172fa8cf5010f26",
+  //   name: "Shield Tower",
+  //   maxHealth: 100,
+  //   health: 100,
+  //   damage: 50,
+  //   armor: 2,
+  //   maxShield: 100,
+  //   shield: 100,
+  //   regen: false,
+  //   cost: 40,
+  //   buildTime: 2,
+  //   isPowered: false
+  // });
+  // await defenseUnit3.save();
+  // console.log("Shield Tower created!");
 };
 
 const run = async () => {
