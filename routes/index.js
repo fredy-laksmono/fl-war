@@ -4,6 +4,7 @@ const router = Router();
 const userController = require("../controllers/UserController");
 const raceController = require("../controllers/RaceController");
 const attackUnitController = require("../controllers/AttackUnitController");
+const defenseUnitController = require("../controllers/DefenseUnitController");
 
 router.get("/", (req, res) => res.send("This is root!"));
 
@@ -23,5 +24,10 @@ router
   .route("/attackUnit")
   .get(attackUnitController.getAllAttackUnits)
   .post(attackUnitController.createAttackUnit);
+
+router
+  .route("/defenseUnit")
+  .get(defenseUnitController.getAllDefenseUnits)
+  .post(defenseUnitController.createDefenseUnit);
 
 module.exports = router;

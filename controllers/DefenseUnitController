@@ -1,0 +1,16 @@
+const { DefenseUnit } = require("../models");
+
+const createDefenseUnit = async (req, res) => {
+  const createData = await DefenseUnit.create(req.body);
+  res.send(createData);
+};
+
+const getAllDefenseUnits = async (req, res) => {
+  const data = await DefenseUnit.find();
+  res.send(data);
+};
+
+module.exports = {
+  createDefenseUnit,
+  getAllDefenseUnits
+};
