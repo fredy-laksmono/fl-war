@@ -8,13 +8,16 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 const main = async () => {
   // const race1 = await new Race({
-  //   name: "Terran"
+  //   name: "Terran",
+  //   description: "Your normal human faction where everything is so soso."
   // });
   // await race1.save();
   // console.log("Created race1!");
 
   const Scien = await new Race({
-    name: "Scien"
+    name: "Scien",
+    description:
+      "A technological advance faction where they required the advancement as a mean to survive. All units and even building will have shield technology to compansate their weak body."
   });
   await Scien.save();
   console.log("Created Scien race!");
