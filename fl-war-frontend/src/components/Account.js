@@ -39,32 +39,11 @@ const Account = (props) => {
     </div>
   );
 
-  const updateRender = () => {
-    console.log("update render called", playerDataState);
-    if (playerDataState.name) {
-      toRender = (
-        <div>
-          Welcome player {playerDataState.name}
-          <div>
-            <Deck />
-          </div>
-        </div>
-      );
-    } else {
-      toRender = (
-        <div>
-          <h5>Player Id is not valid, please create a new user account</h5>
-          <Link to="/new">Create account page</Link>
-        </div>
-      );
-    }
-  };
-
   useEffect(() => {
     if (userId.length === 24) {
       check(userId);
     }
-    updateRender();
+    //updateRender();
   }, []);
 
   if (playerDataState.name) {

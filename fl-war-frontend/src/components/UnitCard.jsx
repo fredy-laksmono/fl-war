@@ -1,10 +1,9 @@
 const UnitCard = (props) => {
-    return (
-    <div>
-        {props.name} <br/>
-        {props.health}
-    </div>
-    )
+    let toRender = <div>
+    {props.name} <br/>
+    {props.health}
+</div>
+    return toRender
 }
 
 export default UnitCard
