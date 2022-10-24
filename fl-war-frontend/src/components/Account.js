@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import Deck from "./Deck";
 import axios from "axios";
 
 const Account = (props) => {
@@ -41,7 +42,14 @@ const Account = (props) => {
   const updateRender = () => {
     console.log("update render called", playerDataState);
     if (playerDataState.name) {
-      toRender = <div>Welcome player {playerDataState.name}</div>;
+      toRender = (
+        <div>
+          Welcome player {playerDataState.name}
+          <div>
+            <Deck />
+          </div>
+        </div>
+      );
     } else {
       toRender = (
         <div>
@@ -53,14 +61,21 @@ const Account = (props) => {
   };
 
   useEffect(() => {
-    if (userId.length == 24) {
+    if (userId.length === 24) {
       check(userId);
     }
     updateRender();
   }, []);
 
   if (playerDataState.name) {
-    toRender = <div>Welcome player {playerDataState.name}</div>;
+    toRender = (
+      <div>
+        Welcome player {playerDataState.name}
+        <div>
+          <Deck />
+        </div>
+      </div>
+    );
   } else {
     toRender = (
       <div>
