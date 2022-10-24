@@ -26,6 +26,10 @@ router
   .post(attackUnitController.createAttackUnit);
 
 router
+  .route("/attackUnit/:race")
+  .get(attackUnitController.getAllAttackUnitRace);
+
+router
   .route("/defenseUnit")
   .get(defenseUnitController.getAllDefenseUnits)
   .post(defenseUnitController.createDefenseUnit);

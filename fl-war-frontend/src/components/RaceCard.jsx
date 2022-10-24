@@ -1,7 +1,6 @@
 const RaceCard = (props) => {
-    console.log("this is race card data",props.data)
     let toRender = (<div>
-        {props.data.name}
+        <button value={props.data.name} onClick={props.onClick}>{props.data.name}</button>
     </div>)
     return toRender
 }

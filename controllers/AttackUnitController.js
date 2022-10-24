@@ -1,4 +1,4 @@
-const { AttackUnit } = require("../models");
+const { AttackUnit, Race } = require("../models");
 
 const createAttackUnit = async (req, res) => {
   const createData = await AttackUnit.create(req.body);
@@ -10,7 +10,15 @@ const getAllAttackUnits = async (req, res) => {
   res.send(data);
 };
 
+const getAllAttackUnitRace = async (req, res) => {
+  const raceId = await Race.find({ name: `${req.params.race}` });
+  console.log("this is raceId", raceId[0]._id);
+  const data = await AttackUnit.find({ race_id: `${raceId[0]._id}` });
+  res.send(data);
+};
+
 module.exports = {
   createAttackUnit,
-  getAllAttackUnits
+  getAllAttackUnits,
+  getAllAttackUnitRace
 };

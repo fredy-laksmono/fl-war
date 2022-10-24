@@ -6,14 +6,30 @@ import UnitCard from "./UnitCard";
 const Deck = (props) => {
   const [viewMode, setViewMode] = useState("none");
   const [raceData, updateRaceData] = useState("");
+  const [raceSelected, updateRaceSelected] = useState("")
+const [unitList, updateUnitList] = useState("")
 
-  const initiateDeckCreation = () => {
-    setViewMode("Deck Creation");
+  const initiateRaceSelection = () => {
+    setViewMode("Race selection");
   };
+
+  const initiateUnitSelection = () => {
+    setViewMode("Unit selection")
+  }
+
+
   let toRender = <div> Deck</div>;
   let raceToRender
+  let deckFrame
+  let attackUnitListFrame
+  let defenseUnitListFrame
 
 
+  const updatePlayerRace = (e) => {
+    console.log("Race selected is ", e.target.value)
+    updateRaceSelected(e.target.value)
+    initiateUnitSelection();
+  }
 
   const getAllRacesData = async () => {
     console.log("get all race api called");
@@ -35,26 +51,35 @@ const Deck = (props) => {
   }, [viewMode]);
 
 
-  if(raceData){
+  if (raceSelected){
+    
+  }
+  else if(raceData){
     raceToRender = <div>
         {raceData.map((race) => (
-            <RaceCard data={race}/>
+            <RaceCard data={race} onClick={updatePlayerRace}/>
         ))}
     </div>
   }
 
 
-  if (viewMode === "Deck Creation") {
+  if (viewMode === "Race selection") {
     toRender = (
       <div>
         Select your race
         {raceToRender}
       </div>
     );
+  } else if(viewMode === "Unit selection") {
+    toRender=(
+        <div>
+            Select your unit
+        </div>
+    )
   } else if (!props.deckId) {
     toRender = (
       <div>
-        <button onClick={initiateDeckCreation}>Create new deck</button>
+        <button onClick={initiateRaceSelection}>Create new deck</button>
       </div>
     );
   }
