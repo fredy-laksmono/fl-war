@@ -34,7 +34,7 @@ const [deckForm, updateDeckForm] = useState({
   let attackUnitListFrame
   let defenseUnitListFrame
 
-  const unitSelect = (e) => {
+  const attackUnitSelect = (e) => {
     if (!deckForm.attack1_id){
         updateDeckForm({ ...deckForm, attack1_id: e.currentTarget.id})
     } else if (!deckForm.attack2_id){
@@ -43,6 +43,16 @@ const [deckForm, updateDeckForm] = useState({
         updateDeckForm({ ...deckForm, attack3_id: e.currentTarget.id})
     } else {
         // let player know they can only have 3 attack units
+    }
+  }
+
+  const defenseUnitSelect = (e) => {
+    if (!deckForm.defense1_id){
+        updateDeckForm({ ...deckForm, defense1_id: e.currentTarget.id})
+    } else if (!deckForm.defense2_id){
+        updateDeckForm({ ...deckForm, defense2_id: e.currentTarget.id})
+    } else {
+        // let player know they can only have 2 defense units
     }
   }
 
@@ -115,7 +125,7 @@ const [deckForm, updateDeckForm] = useState({
     attackUnitListFrame = (
         <div>
             {attackUnitList.map((attackUnit) => (
-                <UnitCard key={attackUnit._id} data={attackUnit} onClick={unitSelect}/>
+                <UnitCard key={attackUnit._id} data={attackUnit} onClick={attackUnitSelect}/>
             ))}
         </div>
     )
@@ -123,7 +133,7 @@ const [deckForm, updateDeckForm] = useState({
     defenseUnitListFrame = (
         <div>
             {defenseUnitList.map((defenseUnit) => (
-                <UnitCard key={defenseUnit._id} data={defenseUnit} onClick={unitSelect}/>
+                <UnitCard key={defenseUnit._id} data={defenseUnit} onClick={defenseUnitSelect}/>
             ))}
         </div>
     )
