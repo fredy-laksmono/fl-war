@@ -111,11 +111,19 @@ const [deckForm, updateDeckForm] = useState({
   }, [viewMode]);
 
 
-  if (attackUnitList){
+  if (attackUnitList && defenseUnitList){
     attackUnitListFrame = (
         <div>
             {attackUnitList.map((attackUnit) => (
                 <UnitCard key={attackUnit._id} data={attackUnit} onClick={unitSelect}/>
+            ))}
+        </div>
+    )
+
+    defenseUnitListFrame = (
+        <div>
+            {defenseUnitList.map((defenseUnit) => (
+                <UnitCard key={defenseUnit._id} data={defenseUnit} onClick={unitSelect}/>
             ))}
         </div>
     )
@@ -150,6 +158,9 @@ const [deckForm, updateDeckForm] = useState({
     toRender=(
         <div>
             {attackUnitListFrame}
+            <br/>
+            {defenseUnitListFrame}
+            <br/>
             {deckFrame}
         </div>
     )
