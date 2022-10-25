@@ -18,6 +18,13 @@ const [deckForm, updateDeckForm] = useState({
     defense1_id: "",
     defense2_id: ""
 })
+const [selectedUnitName, updateSelectedUnitName] = useState({
+    attack1_name: "Attack Unit 1",
+    attack2_name: "Attack Unit 2",
+    attack3_name: "Attack Unit 3",
+    defense1_name: "Defense Unit 1",
+    defense2_name: "Defense Unit 2"
+})
 
   const initiateRaceSelection = () => {
     setViewMode("Race selection");
@@ -35,12 +42,18 @@ const [deckForm, updateDeckForm] = useState({
   let defenseUnitListFrame
 
   const attackUnitSelect = (e) => {
+    console.log(e.currentTarget)
+    console.log(e.currentTarget.id)
+    console.log(e.currentTarget.getAttribute("value"))
     if (!deckForm.attack1_id){
         updateDeckForm({ ...deckForm, attack1_id: e.currentTarget.id})
+        updateSelectedUnitName({ ...selectedUnitName, attack1_name: e.currentTarget.getAttribute("value")})
     } else if (!deckForm.attack2_id){
         updateDeckForm({ ...deckForm, attack2_id: e.currentTarget.id})
+        updateSelectedUnitName({ ...selectedUnitName, attack2_name: e.currentTarget.getAttribute("value")})
     } else if (!deckForm.attack3_id){
         updateDeckForm({ ...deckForm, attack3_id: e.currentTarget.id})
+        updateSelectedUnitName({ ...selectedUnitName, attack3_name: e.currentTarget.getAttribute("value")})
     } else {
         // let player know they can only have 3 attack units
     }
@@ -49,8 +62,10 @@ const [deckForm, updateDeckForm] = useState({
   const defenseUnitSelect = (e) => {
     if (!deckForm.defense1_id){
         updateDeckForm({ ...deckForm, defense1_id: e.currentTarget.id})
+        updateSelectedUnitName({ ...selectedUnitName, defense1_name: e.currentTarget.getAttribute("value")})
     } else if (!deckForm.defense2_id){
         updateDeckForm({ ...deckForm, defense2_id: e.currentTarget.id})
+        updateSelectedUnitName({ ...selectedUnitName, defense2_name: e.currentTarget.getAttribute("value")})
     } else {
         // let player know they can only have 2 defense units
     }
@@ -125,7 +140,7 @@ const [deckForm, updateDeckForm] = useState({
     attackUnitListFrame = (
         <div>
             {attackUnitList.map((attackUnit) => (
-                <UnitCard key={attackUnit._id} data={attackUnit} onClick={attackUnitSelect}/>
+                <UnitCard key={attackUnit._id} data={attackUnit} unitSelect={attackUnitSelect}/>
             ))}
         </div>
     )
@@ -133,18 +148,18 @@ const [deckForm, updateDeckForm] = useState({
     defenseUnitListFrame = (
         <div>
             {defenseUnitList.map((defenseUnit) => (
-                <UnitCard key={defenseUnit._id} data={defenseUnit} onClick={defenseUnitSelect}/>
+                <UnitCard key={defenseUnit._id} data={defenseUnit} unitSelect={defenseUnitSelect}/>
             ))}
         </div>
     )
 
     deckFrame = (
         <div>
-            <button>Attack Unit 1</button>
-            <button>Attack Unit 2</button>
-            <button>Attack Unit 3</button>
-            <button>Defense unit 1</button>
-            <button>Defense unit 2</button>
+            <button>{selectedUnitName.attack1_name}</button>
+            <button>{selectedUnitName.attack2_name}</button>
+            <button>{selectedUnitName.attack3_name}</button>
+            <button>{selectedUnitName.defense1_name}</button>
+            <button>{selectedUnitName.defense2_name}</button>
         </div>
     )
   }
