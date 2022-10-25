@@ -7,7 +7,17 @@ const Deck = (props) => {
   const [viewMode, setViewMode] = useState("none");
   const [raceData, updateRaceData] = useState("");
   const [raceSelected, updateRaceSelected] = useState("")
-const [unitList, updateUnitList] = useState("")
+const [attackUnitList, updateAttackUnitList] = useState("")
+const [defenseUnitList, updateDefenseUnitList] = useState("")
+const [deckForm, updateDeckForm] = useState({
+    race_id: "",
+    user_id: "",
+    attack1_id: "",
+    attack2_id: "",
+    attack3_id: "",
+    defense1_id: "",
+    defense2_id: ""
+})
 
   const initiateRaceSelection = () => {
     setViewMode("Race selection");
@@ -24,11 +34,57 @@ const [unitList, updateUnitList] = useState("")
   let attackUnitListFrame
   let defenseUnitListFrame
 
+  const unitSelect = (e) => {
+    if (!deckForm.attack1_id){
+        updateDeckForm({ ...deckForm, attack1_id: e.currentTarget.id})
+    } else if (!deckForm.attack2_id){
+        updateDeckForm({ ...deckForm, attack2_id: e.currentTarget.id})
+    } else if (!deckForm.attack3_id){
+        updateDeckForm({ ...deckForm, attack3_id: e.currentTarget.id})
+    } else {
+        // let player know they can only have 3 attack units
+    }
+  }
+
+  const createDeck = (e) => {
+
+  }
 
   const updatePlayerRace = (e) => {
     console.log("Race selected is ", e.target.value)
     updateRaceSelected(e.target.value)
+    updateDeckForm({ ...deckForm, race_id: e.target.id, user_id: props.userId})
     initiateUnitSelection();
+  }
+
+  const getAllAttackUnitList = async () => {
+    console.log("get all Attack Unit api called");
+    const attackUnitsData = await axios
+    .get(`http://localhost:3001/api/attackUnit/${raceSelected}`)
+    .then((response) => {
+        return response;
+    })
+    .then((response) => {
+        updateAttackUnitList(response.data)
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+  }
+
+  const getAllDefenseUnitList = async () => {
+    console.log("get all Defense Unit api called");
+    const defenseUnitsData = await axios
+    .get(`http://localhost:3001/api/defenseUnit/${raceSelected}`)
+    .then((response) => {
+        return response;
+    })
+    .then((response) => {
+        updateDefenseUnitList(response.data)
+    })
+    .catch((error) => {
+        console.error(error)
+    })
   }
 
   const getAllRacesData = async () => {
@@ -48,16 +104,36 @@ const [unitList, updateUnitList] = useState("")
 
   useEffect(() => {
     getAllRacesData();
+    if(raceSelected){
+        getAllAttackUnitList()
+        getAllDefenseUnitList()
+    }
   }, [viewMode]);
 
 
-  if (raceSelected){
-    
+  if (attackUnitList){
+    attackUnitListFrame = (
+        <div>
+            {attackUnitList.map((attackUnit) => (
+                <UnitCard key={attackUnit._id} data={attackUnit} onClick={unitSelect}/>
+            ))}
+        </div>
+    )
+
+    deckFrame = (
+        <div>
+            <button>Attack Unit 1</button>
+            <button>Attack Unit 2</button>
+            <button>Attack Unit 3</button>
+            <button>Defense unit 1</button>
+            <button>Defense unit 2</button>
+        </div>
+    )
   }
   else if(raceData){
     raceToRender = <div>
         {raceData.map((race) => (
-            <RaceCard data={race} onClick={updatePlayerRace}/>
+            <RaceCard key={race._id} data={race} onClick={updatePlayerRace}/>
         ))}
     </div>
   }
@@ -73,7 +149,8 @@ const [unitList, updateUnitList] = useState("")
   } else if(viewMode === "Unit selection") {
     toRender=(
         <div>
-            Select your unit
+            {attackUnitListFrame}
+            {deckFrame}
         </div>
     )
   } else if (!props.deckId) {

@@ -34,4 +34,8 @@ router
   .get(defenseUnitController.getAllDefenseUnits)
   .post(defenseUnitController.createDefenseUnit);
 
+router
+  .route("/defenseUnit/:race")
+  .get(defenseUnitController.getAllDefenseUnitRace);
+
 module.exports = router;

@@ -12,7 +12,6 @@ const getAllAttackUnits = async (req, res) => {
 
 const getAllAttackUnitRace = async (req, res) => {
   const raceId = await Race.find({ name: `${req.params.race}` });
-  console.log("this is raceId", raceId[0]._id);
   const data = await AttackUnit.find({ race_id: `${raceId[0]._id}` });
   res.send(data);
 };

@@ -49,7 +49,7 @@ const Account = (props) => {
       <div>
         Welcome player {playerDataState.name}
         <div>
-          <Deck />
+          <Deck userId={playerDataState.id} />
         </div>
       </div>
     );
