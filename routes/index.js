@@ -47,6 +47,9 @@ router.route("/defenseUnit/find/:id").get(defenseUnitController.getDefenseUnit);
 
 router.route("/deck").post(deckController.createDeck);
 
-router.route("/deck/:deckId").get(deckController.getDeck);
+router
+  .route("/deck/:deckId")
+  .get(deckController.getDeck)
+  .delete(deckController.deleteDeck);
 
 module.exports = router;

@@ -57,6 +57,10 @@ const [deckDisplay, updateDeckDisplay] = useState({
     setViewMode("Manage deck")
   }
 
+  const initiateDeletedDeck = () => {
+    setViewMode("Deleted deck")
+  }
+
 
   let toRender = <div> Deck</div>;
   let raceToRender
@@ -176,8 +180,23 @@ const [deckDisplay, updateDeckDisplay] = useState({
             defense2: defense2Data
         })
     }
-
   }
+
+  const deleteDeck = async () => {
+    console.log(currentDeckId)
+    const deckDelete = await axios
+    .delete(`http://localhost:3001/api/deck/${currentDeckId}`)
+    .then((response) => {
+        initiateDeletedDeck()
+        console.log("view mode after deck deletion", viewMode)
+        //do state cleaning
+        return response
+    })
+    .catch((error)=>{
+        console.error(error)
+    })
+  }
+
   const attackUnitSelect = (e) => {
     console.log(e.currentTarget)
     console.log(e.currentTarget.id)
@@ -299,7 +318,9 @@ const [deckDisplay, updateDeckDisplay] = useState({
     if(props.userId){
         getDeckData()
     }
-    getAllRacesData();
+    if(viewMode==="Race selection"){
+        getAllRacesData();
+    }   
     if(raceSelected){
         getAllAttackUnitList()
         getAllDefenseUnitList()
@@ -386,11 +407,11 @@ const [deckDisplay, updateDeckDisplay] = useState({
             </div>
             <div>
                 <button>Edit deck</button>
-                <button>Delete deck</button>
+                <button onClick={deleteDeck}>Delete deck</button>
             </div>
         </div>
     )
-  } else if (!props.deckId) {
+  } else if (!props.deckId || viewMode==="Deleted deck") {
     toRender = (
       <div>
         <button onClick={initiateRaceSelection}>Create new deck</button>
