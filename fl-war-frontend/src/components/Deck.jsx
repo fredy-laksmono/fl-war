@@ -70,10 +70,14 @@ const [deckDisplay, updateDeckDisplay] = useState({
   let createDeckButton = <button type="button" id="createDeck" disabled>Create Deck</button>
 
   const getDeckData = async () => {
+    console.log("Deck.jsx line 73 getDeckData function get api account called")
     const userData = await axios
     .get(`http://localhost:3001/api/account/${props.userId}`)
     .then((response) => {
-        updateCurrentDeckId(response.data.deck_id)
+        if(response.data.deck_id){
+            console.log("this is response data deck id",response.data.deck_id)
+            updateCurrentDeckId(response.data.deck_id)
+        }
         return response;
     })
     .catch((error) => {
@@ -81,6 +85,7 @@ const [deckDisplay, updateDeckDisplay] = useState({
     })
 
     if(currentDeckId && !deckIdDisplay.race_id){
+        console.log("Deck.jsx line 88 getDeckData function get api deck called")
         const deckIdData = await axios
         .get(`http://localhost:3001/api/deck/${currentDeckId}`)
         .then((response) => {
@@ -111,6 +116,7 @@ const [deckDisplay, updateDeckDisplay] = useState({
         let defense1Data
         let defense2Data
 
+        console.log("Deck.jsx line 119 get race api called")
         const raceDisplayData = await axios
         .get(`http://localhost:3001/api/race/${deckIdDisplay.race_id}`)
         .then((response) => {
@@ -184,6 +190,7 @@ const [deckDisplay, updateDeckDisplay] = useState({
 
   const deleteDeck = async () => {
     console.log(currentDeckId)
+    console.log("Deck.jsx Api called")
     const deckDelete = await axios
     .delete(`http://localhost:3001/api/deck/${currentDeckId}`)
     .then((response) => {
@@ -198,6 +205,40 @@ const [deckDisplay, updateDeckDisplay] = useState({
             attack3: "",
             defense1: "",
             defense2: ""
+        })
+
+        // clean deck Id display
+        updateDeckIdDisplay({
+            race_id: "",
+            attack1_id: "",
+            attack2_id: "",
+            attack3_id: "",
+            defense1_id: "",
+            defense2_id: ""
+        })
+
+        // clean deck form
+        updateDeckForm({
+            race_id: "",
+            user_id: "",
+            attack1_id: "",
+            attack2_id: "",
+            attack3_id: "",
+            defense1_id: "",
+            defense2_id: ""
+        })
+
+        // clean the rest of state
+        updateCurrentDeckId("")
+        updateRaceSelected("");
+        updateAttackUnitList("");
+        updateDefenseUnitList("");
+        updateSelectedUnitName({
+            attack1_name: "Attack Unit 1",
+            attack2_name: "Attack Unit 2",
+            attack3_name: "Attack Unit 3",
+            defense1_name: "Defense Unit 1",
+            defense2_name: "Defense Unit 2"
         })
 
         return response

@@ -13,6 +13,7 @@ const Account = (props) => {
   const { userId } = useParams();
 
   const check = async (id) => {
+    console.log("Account.js check function get account api called");
     const userObject = await axios
       .get(`http://localhost:3001/api/account/${id}`)
       .then((response) => {
