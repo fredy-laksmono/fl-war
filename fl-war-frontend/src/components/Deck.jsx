@@ -77,7 +77,6 @@ const [deckDisplay, updateDeckDisplay] = useState({
         .get(`http://localhost:3001/api/deck/${currentDeckId}`)
         .then((response) => {
             const data = response.data;
-            console.log("this is the deck data",response);
             updateDeckIdDisplay(
                 {
                     race_id: data.race_id,
@@ -96,8 +95,82 @@ const [deckDisplay, updateDeckDisplay] = useState({
     }
 
     if(deckIdDisplay.race_id && !deckDisplay.race){
+
+        let raceData
+        let attack1Data
+        let attack2Data
+        let attack3Data
+        let defense1Data
+        let defense2Data
+
         const raceDisplayData = await axios
         .get(`http://localhost:3001/api/race/${deckIdDisplay.race_id}`)
+        .then((response) => {
+            raceData=response.data
+            return response
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+
+        const attack1DisplayData = await axios
+        .get(`http://localhost:3001/api/attackUnit/find/${deckIdDisplay.attack1_id}`)
+        .then((response) => {
+            attack1Data=response.data
+            return response
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+
+        const attack2DisplayData = await axios
+        .get(`http://localhost:3001/api/attackUnit/find/${deckIdDisplay.attack2_id}`)
+        .then((response) => {
+            attack2Data=response.data
+            return response
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+
+        const attack3DisplayData = await axios
+        .get(`http://localhost:3001/api/attackUnit/find/${deckIdDisplay.attack3_id}`)
+        .then((response) => {
+            attack3Data=response.data
+            return response
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+
+        const defense1DisplayData = await axios
+        .get(`http://localhost:3001/api/defenseUnit/find/${deckIdDisplay.defense1_id}`)
+        .then((response) => {
+            defense1Data=response.data
+            return response
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+
+        const defense2DisplayData = await axios
+        .get(`http://localhost:3001/api/defenseUnit/find/${deckIdDisplay.defense2_id}`)
+        .then((response) => {
+            defense2Data=response.data
+            return response
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+        
+        updateDeckDisplay({
+            race: raceData,
+            attack1: attack1Data,
+            attack2: attack2Data,
+            attack3: attack3Data,
+            defense1: defense1Data,
+            defense2: defense2Data
+        })
     }
 
   }
@@ -227,7 +300,7 @@ const [deckDisplay, updateDeckDisplay] = useState({
         getAllAttackUnitList()
         getAllDefenseUnitList()
     }
-  }, [viewMode,currentDeckId]);
+  }, [viewMode,currentDeckId,deckIdDisplay]);
 
   if (deckForm.attack3_id && deckForm.defense2_id){
     createDeckButton = <button type="button" id="createDeck" onClick={createDeck}>Create Deck</button>
