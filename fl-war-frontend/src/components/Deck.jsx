@@ -53,6 +53,10 @@ const [deckDisplay, updateDeckDisplay] = useState({
     setViewMode("Unit selection")
   }
 
+  const initiateManageDeck = () => {
+    setViewMode("Manage deck")
+  }
+
 
   let toRender = <div> Deck</div>;
   let raceToRender
@@ -232,7 +236,7 @@ const [deckDisplay, updateDeckDisplay] = useState({
         return response;
     })
     .then((response) => {
-        setViewMode("Manage deck")
+        initiateManageDeck()
     })
     .catch((error) => {
         console.error(error)
@@ -347,6 +351,9 @@ const [deckDisplay, updateDeckDisplay] = useState({
     </div>
   }
 
+  if (deckDisplay.race && viewMode !== "Manage deck"){
+    initiateManageDeck();
+  }
 
   if (viewMode === "Race selection") {
     toRender = (
@@ -369,7 +376,18 @@ const [deckDisplay, updateDeckDisplay] = useState({
     toRender=(
         <div>
             Your Deck
-            <div></div>
+            <div>
+                <div>Race: {deckDisplay.race.name}</div>
+                <div>Attack1: {deckDisplay.attack1.name}</div>
+                <div>Attack2: {deckDisplay.attack2.name}</div>
+                <div>Attack3: {deckDisplay.attack3.name}</div>
+                <div>Defense1: {deckDisplay.defense1.name}</div>
+                <div>Defense2: {deckDisplay.defense2.name}</div>
+            </div>
+            <div>
+                <button>Edit deck</button>
+                <button>Delete deck</button>
+            </div>
         </div>
     )
   } else if (!props.deckId) {
