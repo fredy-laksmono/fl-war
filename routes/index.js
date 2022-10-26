@@ -50,6 +50,7 @@ router.route("/deck").post(deckController.createDeck);
 router
   .route("/deck/:deckId")
   .get(deckController.getDeck)
+  .put(deckController.updateDeck)
   .delete(deckController.deleteDeck);
 
 module.exports = router;

@@ -45,6 +45,9 @@ const [deckDisplay, updateDeckDisplay] = useState({
     defense2: ""
 })
 
+const [currentUser, updateCurrentUser] = useState("")
+const [needReload, setNeedReload] = useState(true)
+
   const initiateRaceSelection = () => {
     setViewMode("Race selection");
   };
@@ -69,8 +72,22 @@ const [deckDisplay, updateDeckDisplay] = useState({
   let defenseUnitListFrame
   let createDeckButton = <button type="button" id="createDeck" disabled>Create Deck</button>
 
+  const getUserObject = async () => {
+    const userObject = await axios
+    .get(`http://localhost:3001/api/account/${props.userId}`)
+    .then((response) => {
+        if (response.data._id){
+            updateCurrentUser(response.data)
+        }
+        return response
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+  }
+
   const getDeckData = async () => {
-    console.log("Deck.jsx line 73 getDeckData function get api account called")
+    console.log("Deck.jsx getDeckData function get api account called")
     const userData = await axios
     .get(`http://localhost:3001/api/account/${props.userId}`)
     .then((response) => {
@@ -84,8 +101,8 @@ const [deckDisplay, updateDeckDisplay] = useState({
         console.error(error)
     })
 
-    if(currentDeckId && !deckIdDisplay.race_id){
-        console.log("Deck.jsx line 88 getDeckData function get api deck called")
+    if(currentUser.deck_id && needReload){
+        console.log("Deck.jsx getDeckData function get api deck called")
         const deckIdData = await axios
         .get(`http://localhost:3001/api/deck/${currentDeckId}`)
         .then((response) => {
@@ -107,7 +124,7 @@ const [deckDisplay, updateDeckDisplay] = useState({
         })
     }
 
-    if(deckIdDisplay.race_id && !deckDisplay.race){
+    if(deckIdDisplay.defense2_id && needReload){
 
         let raceData
         let attack1Data
@@ -186,6 +203,7 @@ const [deckDisplay, updateDeckDisplay] = useState({
             defense2: defense2Data
         })
     }
+    setNeedReload(false)
   }
 
   const deleteDeck = async () => {
@@ -299,18 +317,34 @@ const [deckDisplay, updateDeckDisplay] = useState({
 
   const createDeck = async (e) => {
     // to do, check if deck is available. A user can only have one deck.
-    console.log("post deck api called");
-    const createDeckData = await axios
-    .post(`http://localhost:3001/api/deck`,deckForm)
-    .then((response) => {
-        return response;
-    })
-    .then((response) => {
-        initiateManageDeck()
-    })
-    .catch((error) => {
-        console.error(error)
-    })
+    if(currentUser.deck_id){
+        console.log("update deck api called")
+        const updateDeckData = await axios
+        .put(`http://localhost:3001/api/deck/${currentDeckId}`,deckForm)
+        .then((response) => {
+            setNeedReload(true)
+            initiateManageDeck()
+            return response
+        })
+        .catch((error)=>{
+            console.error(error)
+        })
+    } else{
+        console.log("post deck api called");
+        const createDeckData = await axios
+        .post(`http://localhost:3001/api/deck`,deckForm)
+        .then((response) => {
+            setNeedReload(true)
+            return response;
+        })
+        .then((response) => {
+            initiateManageDeck()
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    }
+    
   }
 
   const updatePlayerRace = (e) => {
@@ -365,8 +399,34 @@ const [deckDisplay, updateDeckDisplay] = useState({
       });
   };
 
+  const manageDeck = async () => {
+    //populate deck form
+    updateDeckForm({
+        race_id: deckDisplay.race._id,
+        user_id: props.userId,
+        attack1_id: deckDisplay.attack1._id,
+        attack2_id: deckDisplay.attack2._id,
+        attack3_id: deckDisplay.attack3._id,
+        defense1_id: deckDisplay.defense1._id,
+        defense2_id: deckDisplay.defense2._id
+    })
+
+    //populate selected unit name
+    updateSelectedUnitName({
+        attack1_name: deckDisplay.attack1.name,
+        attack2_name: deckDisplay.attack2.name,
+        attack3_name: deckDisplay.attack3.name,
+        defense1_name: deckDisplay.defense1.name,
+        defense2_name: deckDisplay.defense2.name
+    })
+    updateRaceSelected(deckDisplay.race.name);
+    initiateUnitSelection();
+  }
+
   useEffect(() => {
     if(props.userId){
+        console.log("run first use effect function")
+        getUserObject()
         getDeckData()
     }
     if(viewMode==="Race selection"){
@@ -423,11 +483,13 @@ const [deckDisplay, updateDeckDisplay] = useState({
     </div>
   }
 
-  if (deckDisplay.race && viewMode !== "Manage deck"){
+  if (currentUser.deck_id && viewMode !== "Manage deck" && viewMode !== "Unit selection"){
+    console.log("change to manage deck view")
     initiateManageDeck();
   }
 
   if (viewMode === "Race selection") {
+    console.log("View mode = Race selection")
     toRender = (
       <div>
         Select your race
@@ -435,6 +497,7 @@ const [deckDisplay, updateDeckDisplay] = useState({
       </div>
     );
   } else if(viewMode === "Unit selection") {
+    console.log("View mode = Unit selection")
     toRender=(
         <div>
             {attackUnitListFrame}
@@ -445,6 +508,7 @@ const [deckDisplay, updateDeckDisplay] = useState({
         </div>
     )
   } else if(viewMode === "Manage deck"){
+    console.log("View mode = Manage deck")
     toRender=(
         <div>
             Your Deck
@@ -457,12 +521,13 @@ const [deckDisplay, updateDeckDisplay] = useState({
                 <div>Defense2: {deckDisplay.defense2.name}</div>
             </div>
             <div>
-                <button>Edit deck</button>
+                <button onClick={manageDeck}>Edit deck</button>
                 <button onClick={deleteDeck}>Delete deck</button>
             </div>
         </div>
     )
   } else if (!props.deckId || viewMode==="Deleted deck") {
+    console.log("View mode = Deleted deck / no deckId")
     toRender = (
       <div>
         <button onClick={initiateRaceSelection}>Create new deck</button>

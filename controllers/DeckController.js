@@ -17,6 +17,11 @@ const getDeck = async (req, res) => {
   res.send(deckData);
 };
 
+const updateDeck = async (req, res) => {
+  const deckData = await Deck.updateOne({ _id: req.params.deckId }, req.body);
+  res.send(deckData);
+};
+
 const deleteDeck = async (req, res) => {
   console.log(req.params.deckId);
   const deckData = await Deck.findById(req.params.deckId);
@@ -37,5 +42,6 @@ const deleteDeck = async (req, res) => {
 module.exports = {
   createDeck,
   getDeck,
+  updateDeck,
   deleteDeck
 };

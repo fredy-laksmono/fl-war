@@ -48,7 +48,7 @@ const Account = (props) => {
   if (playerDataState.name) {
     toRender = (
       <div>
-        Welcome player {playerDataState.name}
+        Player {playerDataState.name}
         <div>
           <Deck userId={playerDataState.id} />
         </div>
