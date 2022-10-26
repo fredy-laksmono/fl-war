@@ -10,7 +10,13 @@ const getAllRace = async (req, res) => {
   res.send(raceData);
 };
 
+const getRace = async (req, res) => {
+  const raceData = await Race.findById(req.params.raceId);
+  res.send(raceData);
+};
+
 module.exports = {
   createRace,
-  getAllRace
+  getAllRace,
+  getRace
 };

@@ -16,8 +16,14 @@ const getAllDefenseUnitRace = async (req, res) => {
   res.send(data);
 };
 
+const getDefenseUnit = async (req, res) => {
+  const data = await DefenseUnit.findById(req.params.id);
+  res.send(data);
+};
+
 module.exports = {
   createDefenseUnit,
   getAllDefenseUnits,
-  getAllDefenseUnitRace
+  getAllDefenseUnitRace,
+  getDefenseUnit
 };

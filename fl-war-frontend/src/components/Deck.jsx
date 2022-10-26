@@ -9,6 +9,7 @@ const Deck = (props) => {
   const [raceSelected, updateRaceSelected] = useState("")
 const [attackUnitList, updateAttackUnitList] = useState("")
 const [defenseUnitList, updateDefenseUnitList] = useState("")
+
 const [deckForm, updateDeckForm] = useState({
     race_id: "",
     user_id: "",
@@ -26,6 +27,24 @@ const [selectedUnitName, updateSelectedUnitName] = useState({
     defense2_name: "Defense Unit 2"
 })
 
+const [currentDeckId, updateCurrentDeckId] = useState("")
+const [deckIdDisplay, updateDeckIdDisplay] = useState({
+    race_id: "",
+    attack1_id: "",
+    attack2_id: "",
+    attack3_id: "",
+    defense1_id: "",
+    defense2_id: ""
+})
+const [deckDisplay, updateDeckDisplay] = useState({
+    race: "",
+    attack1: "",
+    attack2: "",
+    attack3: "",
+    defense1: "",
+    defense2: ""
+})
+
   const initiateRaceSelection = () => {
     setViewMode("Race selection");
   };
@@ -40,7 +59,48 @@ const [selectedUnitName, updateSelectedUnitName] = useState({
   let deckFrame
   let attackUnitListFrame
   let defenseUnitListFrame
+  let createDeckButton = <button type="button" id="createDeck" disabled>Create Deck</button>
 
+  const getDeckData = async () => {
+    const userData = await axios
+    .get(`http://localhost:3001/api/account/${props.userId}`)
+    .then((response) => {
+        updateCurrentDeckId(response.data.deck_id)
+        return response;
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+
+    if(currentDeckId && !deckIdDisplay.race_id){
+        const deckIdData = await axios
+        .get(`http://localhost:3001/api/deck/${currentDeckId}`)
+        .then((response) => {
+            const data = response.data;
+            console.log("this is the deck data",response);
+            updateDeckIdDisplay(
+                {
+                    race_id: data.race_id,
+                    attack1_id: data.attack1_id,
+                    attack2_id: data.attack2_id,
+                    attack3_id: data.attack3_id,
+                    defense1_id: data.defense1_id,
+                    defense2_id: data.defense2_id
+                }
+            )
+            return response;
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    }
+
+    if(deckIdDisplay.race_id && !deckDisplay.race){
+        const raceDisplayData = await axios
+        .get(`http://localhost:3001/api/race/${deckIdDisplay.race_id}`)
+    }
+
+  }
   const attackUnitSelect = (e) => {
     console.log(e.currentTarget)
     console.log(e.currentTarget.id)
@@ -71,8 +131,39 @@ const [selectedUnitName, updateSelectedUnitName] = useState({
     }
   }
 
-  const createDeck = (e) => {
+  const removeUnitSelect = (e) => {
+    if(e.target.id === "attack1"){
+        updateDeckForm({ ...deckForm, attack1_id: ""})
+        updateSelectedUnitName({ ...selectedUnitName, attack1_name: "Attack unit 1"})
+    } else if(e.target.id === "attack2"){
+        updateDeckForm({ ...deckForm, attack2_id: ""})
+        updateSelectedUnitName({ ...selectedUnitName, attack2_name: "Attack unit 2"})
+    } else if(e.target.id === "attack3"){
+        updateDeckForm({ ...deckForm, attack3_id: ""})
+        updateSelectedUnitName({ ...selectedUnitName, attack3_name: "Attack unit 3"})
+    } else if(e.target.id === "defense1"){
+        updateDeckForm({ ...deckForm, defense1_id: ""})
+        updateSelectedUnitName({ ...selectedUnitName, defense1_name: "Defense unit 1"})
+    } else if(e.target.id === "defense2"){
+        updateDeckForm({ ...deckForm, defense2_id: ""})
+        updateSelectedUnitName({ ...selectedUnitName, defense2_name: "Defense unit 2"})
+  }
+}
 
+  const createDeck = async (e) => {
+    // to do, check if deck is available. A user can only have one deck.
+    console.log("post deck api called");
+    const createDeckData = await axios
+    .post(`http://localhost:3001/api/deck`,deckForm)
+    .then((response) => {
+        return response;
+    })
+    .then((response) => {
+        setViewMode("Manage deck")
+    })
+    .catch((error) => {
+        console.error(error)
+    })
   }
 
   const updatePlayerRace = (e) => {
@@ -128,13 +219,19 @@ const [selectedUnitName, updateSelectedUnitName] = useState({
   };
 
   useEffect(() => {
+    if(props.userId){
+        getDeckData()
+    }
     getAllRacesData();
     if(raceSelected){
         getAllAttackUnitList()
         getAllDefenseUnitList()
     }
-  }, [viewMode]);
+  }, [viewMode,currentDeckId]);
 
+  if (deckForm.attack3_id && deckForm.defense2_id){
+    createDeckButton = <button type="button" id="createDeck" onClick={createDeck}>Create Deck</button>
+  }
 
   if (attackUnitList && defenseUnitList){
     attackUnitListFrame = (
@@ -155,11 +252,17 @@ const [selectedUnitName, updateSelectedUnitName] = useState({
 
     deckFrame = (
         <div>
-            <button>{selectedUnitName.attack1_name}</button>
-            <button>{selectedUnitName.attack2_name}</button>
-            <button>{selectedUnitName.attack3_name}</button>
-            <button>{selectedUnitName.defense1_name}</button>
-            <button>{selectedUnitName.defense2_name}</button>
+            <div>
+                <button id="attack1" onClick={removeUnitSelect}>{selectedUnitName.attack1_name}</button>
+                <button id="attack2" onClick={removeUnitSelect}>{selectedUnitName.attack2_name}</button>
+                <button id="attack3" onClick={removeUnitSelect}>{selectedUnitName.attack3_name}</button>
+                <button id="defense1" onClick={removeUnitSelect}>{selectedUnitName.defense1_name}</button>
+                <button id="defense2" onClick={removeUnitSelect}>{selectedUnitName.defense2_name}</button>
+            </div>
+            <br/>
+            <div>
+            {createDeckButton}
+            </div>
         </div>
     )
   }
@@ -187,6 +290,13 @@ const [selectedUnitName, updateSelectedUnitName] = useState({
             {defenseUnitListFrame}
             <br/>
             {deckFrame}
+        </div>
+    )
+  } else if(viewMode === "Manage deck"){
+    toRender=(
+        <div>
+            Your Deck
+            <div></div>
         </div>
     )
   } else if (!props.deckId) {
