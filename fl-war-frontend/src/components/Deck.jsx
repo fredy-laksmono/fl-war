@@ -189,7 +189,17 @@ const [deckDisplay, updateDeckDisplay] = useState({
     .then((response) => {
         initiateDeletedDeck()
         console.log("view mode after deck deletion", viewMode)
-        //do state cleaning
+       
+        // clean deck display
+        updateDeckDisplay({
+            race: "",
+            attack1: "",
+            attack2: "",
+            attack3: "",
+            defense1: "",
+            defense2: ""
+        })
+
         return response
     })
     .catch((error)=>{
