@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 
 const NewAccount = (props) => {
     const { userId,name } = useParams();
-    return <div>
+    return <div className="third">
         <br/>
         Welcome  {name}!
         <br/>

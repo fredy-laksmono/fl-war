@@ -479,7 +479,7 @@ const [needReload, setNeedReload] = useState(true)
     )
   }
   else if(raceData){
-    raceToRender = <div>
+    raceToRender = <div className="race-card-frame">
         {raceData.map((race) => (
             <RaceCard key={race._id} data={race} onClick={updatePlayerRace}/>
         ))}
@@ -495,7 +495,7 @@ const [needReload, setNeedReload] = useState(true)
     console.log("View mode = Race selection")
     toRender = (
       <div>
-        Select your race
+        <h4>Select your race</h4>
         {raceToRender}
       </div>
     );

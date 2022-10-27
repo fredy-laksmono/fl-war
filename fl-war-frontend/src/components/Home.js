@@ -44,8 +44,9 @@ const Home = (params) => {
 
   if (params.new) {
     homeToRender = (
-      <div>
+      <div className="third">
         <p>Welcome to FL-WAR.</p>
+        <br />
         <p>Please create your new account by clicking the following button</p>
         <form onSubmit={handleSubmit}>
           <label>Name: </label>{" "}
@@ -77,7 +78,7 @@ const Home = (params) => {
     );
   } else {
     homeToRender = (
-      <div>
+      <div className="center">
         <button onClick={handleNewUserPath}>Play Game</button>
       </div>
     );

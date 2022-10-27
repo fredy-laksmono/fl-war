@@ -1,5 +1,5 @@
 const HowToPlay = () => {
-    return <div>
+    return <div className="center">
         Placeholder for guide
     </div>
 }

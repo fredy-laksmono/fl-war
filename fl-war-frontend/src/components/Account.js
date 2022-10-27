@@ -50,9 +50,10 @@ const Account = (props) => {
 
   if (playerDataState.name) {
     toRender = (
-      <div>
-        Player {playerDataState.name}
-        <div>
+      <div className="third">
+        <div className="player-status">Player: {playerDataState.name}</div>
+
+        <div className="deck-frame">
           <Deck userId={playerDataState.id} currentUser={playerObject} />
         </div>
       </div>

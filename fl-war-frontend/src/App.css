@@ -37,6 +37,46 @@
   transition: all 0.2s;
 }
 
+.nav-bar {
+ display: flex;
+ justify-content: center;
+ gap: 10px;
+ margin-bottom: 10px;
+}
+.navbar-frame{
+  border-style: solid;
+  background-color: white;
+}
+
+.center{
+  margin-top: 30vh;
+}
+
+.third{
+  margin-top: 7vh;
+}
+
+.player-status{
+  display: flex;
+  padding-left: 20px;
+}
+
+.deck-frame{
+  margin-top: 20px;
+}
+
+.race-card-frame{
+  margin-top: 20px;
+}
+.race-card{
+  max-width: 150px;
+  max-height: 75px;
+  border-radius: 4px;
+  background-color: grey;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
