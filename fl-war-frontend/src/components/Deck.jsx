@@ -101,7 +101,7 @@ const [needReload, setNeedReload] = useState(true)
         console.error(error)
     })
 
-    if(currentUser.deck_id && needReload){
+    if(currentDeckId && needReload){
         console.log("Deck.jsx getDeckData function get api deck called")
         const deckIdData = await axios
         .get(`http://localhost:3001/api/deck/${currentDeckId}`)
@@ -202,8 +202,9 @@ const [needReload, setNeedReload] = useState(true)
             defense1: defense1Data,
             defense2: defense2Data
         })
+        setNeedReload(false)
     }
-    setNeedReload(false)
+    
   }
 
   const deleteDeck = async () => {
@@ -323,6 +324,7 @@ const [needReload, setNeedReload] = useState(true)
         .put(`http://localhost:3001/api/deck/${currentDeckId}`,deckForm)
         .then((response) => {
             setNeedReload(true)
+            console.log("Change to manage deck view")
             initiateManageDeck()
             return response
         })
@@ -338,6 +340,7 @@ const [needReload, setNeedReload] = useState(true)
             return response;
         })
         .then((response) => {
+            console.log("Change to manage deck view")
             initiateManageDeck()
         })
         .catch((error) => {
@@ -483,7 +486,7 @@ const [needReload, setNeedReload] = useState(true)
     </div>
   }
 
-  if (currentUser.deck_id && viewMode !== "Manage deck" && viewMode !== "Unit selection"){
+  if (currentUser.deck_id && viewMode !== "Manage deck" && viewMode !== "Unit selection" && viewMode !== "Deleted deck"){
     console.log("change to manage deck view")
     initiateManageDeck();
   }
@@ -534,6 +537,10 @@ const [needReload, setNeedReload] = useState(true)
       </div>
     );
   }
+
+  
+
+
   return toRender;
 };
 

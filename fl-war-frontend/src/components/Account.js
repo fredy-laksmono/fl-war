@@ -10,6 +10,8 @@ const Account = (props) => {
     deck_id: ""
   });
 
+  const [playerObject, updatePlayerObject] = useState("");
+
   const { userId } = useParams();
 
   const check = async (id) => {
@@ -17,6 +19,7 @@ const Account = (props) => {
     const userObject = await axios
       .get(`http://localhost:3001/api/account/${id}`)
       .then((response) => {
+        updatePlayerObject(response.data);
         return response;
       })
       .catch((error) => {
@@ -50,7 +53,7 @@ const Account = (props) => {
       <div>
         Player {playerDataState.name}
         <div>
-          <Deck userId={playerDataState.id} />
+          <Deck userId={playerDataState.id} currentUser={playerObject} />
         </div>
       </div>
     );
