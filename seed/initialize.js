@@ -149,144 +149,283 @@ const main = async () => {
   // await defenseUnit3.save();
   // console.log("Shield Tower created!");
 
-  const micron = await new Race({
-    name: "Micron",
+  // const micron = await new Race({
+  //   name: "Micron",
+  //   description:
+  //     "A primitive faction who like to consume planet and rapidly reproducing. They are weak but able to regenerate their damaged body as long as they do not die."
+  // });
+  // await micron.save();
+  // console.log("Created Micron race!");
+
+  // const micronAttackUnit1 = await new AttackUnit({
+  //   race_id: micron.id,
+  //   name: "Vairuse",
+  //   maxHealth: 50,
+  //   health: 50,
+  //   damage: 25,
+  //   armor: 0,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: true,
+  //   cost: 3,
+  //   buildTime: 1
+  // });
+  // await micronAttackUnit1.save();
+  // console.log("Micron Attack Unit 1 created!");
+
+  // const micronAttackUnit2 = await new AttackUnit({
+  //   race_id: micron.id,
+  //   name: "Bakteri",
+  //   maxHealth: 60,
+  //   health: 60,
+  //   damage: 50,
+  //   armor: 0,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: true,
+  //   cost: 10,
+  //   buildTime: 1
+  // });
+  // await micronAttackUnit2.save();
+  // console.log("Micron Attack Unit 2 created!");
+
+  // const micronAttackUnit3 = await new AttackUnit({
+  //   race_id: micron.id,
+  //   name: "Arkae",
+  //   maxHealth: 80,
+  //   health: 80,
+  //   damage: 40,
+  //   armor: 0,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: true,
+  //   cost: 10,
+  //   buildTime: 1
+  // });
+  // await micronAttackUnit3.save();
+  // console.log("Micron Attack Unit 3 created!");
+
+  // const micronAttackUnit4 = await new AttackUnit({
+  //   race_id: micron.id,
+  //   name: "Protein",
+  //   maxHealth: 100,
+  //   health: 100,
+  //   damage: 50,
+  //   armor: 0,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: true,
+  //   cost: 15,
+  //   buildTime: 2
+  // });
+  // await micronAttackUnit4.save();
+  // console.log("Micron Attack Unit 4 created!");
+
+  // const micronAttackUnit5 = await new AttackUnit({
+  //   race_id: micron.id,
+  //   name: "Fungeon",
+  //   maxHealth: 120,
+  //   health: 120,
+  //   damage: 40,
+  //   armor: 0,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: true,
+  //   cost: 15,
+  //   buildTime: 2
+  // });
+  // await micronAttackUnit5.save();
+  // console.log("Micron Attack Unit 5 created!");
+
+  // const micronDefenseUnit1 = await new DefenseUnit({
+  //   race_id: micron.id,
+  //   name: "Dirt",
+  //   maxHealth: 60,
+  //   health: 60,
+  //   damage: 40,
+  //   armor: 0,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: true,
+  //   cost: 10,
+  //   buildTime: 1,
+  //   isPowered: false
+  // });
+  // await micronDefenseUnit1.save();
+  // console.log("Dirt Tower created!");
+
+  // const micronDefenseUnit2 = await new DefenseUnit({
+  //   race_id: micron.id,
+  //   name: "Trunk",
+  //   maxHealth: 80,
+  //   health: 80,
+  //   damage: 50,
+  //   armor: 0,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: true,
+  //   cost: 15,
+  //   buildTime 1,
+  //   isPowered: false
+  // });
+  // await micronDefenseUnit2.save();
+  // console.log("Trunk Tower created!");
+
+  // const micronDefenseUnit3 = await new DefenseUnit({
+  //   race_id: micron.id,
+  //   name: "Carcass",
+  //   maxHealth: 100,
+  //   health: 100,
+  //   damage: 50,
+  //   armor: 0,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: true,
+  //   cost: 20,
+  //   buildTime: 1,
+  //   isPowered: false
+  // });
+  // await micronDefenseUnit3.save();
+  // console.log("Carcass Tower created!");
+
+  const galaditor = await new Race({
+    name: "Galaditor",
     description:
-      "A primitive faction who like to consume planet and rapidly reproducing. They are weak but able to regenerate their damaged body as long as they do not die."
+      "A once thought extinct civilization. Comprise of powerful warrior who hate technology."
   });
-  await micron.save();
-  console.log("Created Micron race!");
+  await galaditor.save();
+  console.log("Created Galaditor race!");
 
-  const micronAttackUnit1 = await new AttackUnit({
-    race_id: micron.id,
-    name: "Vairuse",
-    maxHealth: 50,
-    health: 50,
-    damage: 25,
-    armor: 0,
-    maxShield: 0,
-    shield: 0,
-    regen: true,
-    cost: 3,
-    buildTime: 1
-  });
-  await micronAttackUnit1.save();
-  console.log("Micron Attack Unit 1 created!");
-
-  const micronAttackUnit2 = await new AttackUnit({
-    race_id: micron.id,
-    name: "Bakteri",
-    maxHealth: 60,
-    health: 60,
-    damage: 50,
-    armor: 0,
-    maxShield: 0,
-    shield: 0,
-    regen: true,
-    cost: 10,
-    buildTime: 1
-  });
-  await micronAttackUnit2.save();
-  console.log("Micron Attack Unit 2 created!");
-
-  const micronAttackUnit3 = await new AttackUnit({
-    race_id: micron.id,
-    name: "Arkae",
-    maxHealth: 80,
-    health: 80,
-    damage: 40,
-    armor: 0,
-    maxShield: 0,
-    shield: 0,
-    regen: true,
-    cost: 10,
-    buildTime: 1
-  });
-  await micronAttackUnit3.save();
-  console.log("Micron Attack Unit 3 created!");
-
-  const micronAttackUnit4 = await new AttackUnit({
-    race_id: micron.id,
-    name: "Protein",
+  const galaditorAttackUnit1 = await new AttackUnit({
+    race_id: galaditor.id,
+    name: "Slavi",
     maxHealth: 100,
     health: 100,
-    damage: 50,
-    armor: 0,
+    damage: 40,
+    armor: 1,
     maxShield: 0,
     shield: 0,
-    regen: true,
+    regen: false,
     cost: 15,
-    buildTime: 2
+    buildTime: 1
   });
-  await micronAttackUnit4.save();
-  console.log("Micron Attack Unit 4 created!");
+  await galaditorAttackUnit1.save();
+  console.log("Galaditor Attack Unit 1 created!");
 
-  const micronAttackUnit5 = await new AttackUnit({
-    race_id: micron.id,
-    name: "Fungeon",
+  const galaditorAttackUnit2 = await new AttackUnit({
+    race_id: galaditor.id,
+    name: "Enforsir",
     maxHealth: 120,
     health: 120,
-    damage: 40,
-    armor: 0,
+    damage: 50,
+    armor: 3,
     maxShield: 0,
     shield: 0,
-    regen: true,
-    cost: 15,
+    regen: false,
+    cost: 25,
     buildTime: 2
   });
-  await micronAttackUnit5.save();
-  console.log("Micron Attack Unit 5 created!");
+  await galaditorAttackUnit2.save();
+  console.log("Galaditor Attack Unit 2 created!");
 
-  const micronDefenseUnit1 = await new DefenseUnit({
-    race_id: micron.id,
-    name: "Dirt",
-    maxHealth: 60,
-    health: 60,
-    damage: 40,
-    armor: 0,
+  const galaditorAttackUnit3 = await new AttackUnit({
+    race_id: galaditor.id,
+    name: "Haunt",
+    maxHealth: 120,
+    health: 120,
+    damage: 70,
+    armor: 3,
     maxShield: 0,
     shield: 0,
-    regen: true,
-    cost: 10,
+    regen: false,
+    cost: 40,
+    buildTime: 2
+  });
+  await galaditorAttackUnit3.save();
+  console.log("Galaditor Attack Unit 3 created!");
+
+  const galaditorAttackUnit4 = await new AttackUnit({
+    race_id: galaditor.id,
+    name: "Vikang",
+    maxHealth: 150,
+    health: 150,
+    damage: 60,
+    armor: 4,
+    maxShield: 0,
+    shield: 0,
+    regen: false,
+    cost: 50,
+    buildTime: 3
+  });
+  await galaditorAttackUnit4.save();
+  console.log("Galaditor Attack Unit 4 created!");
+
+  const galaditorAttackUnit5 = await new AttackUnit({
+    race_id: galaditor.id,
+    name: "Herkuas",
+    maxHealth: 200,
+    health: 200,
+    damage: 70,
+    armor: 5,
+    maxShield: 0,
+    shield: 0,
+    regen: false,
+    cost: 60,
+    buildTime: 4
+  });
+  await galaditorAttackUnit5.save();
+  console.log("Galaditor Attack Unit 5 created!");
+
+  const galaditorDefenseUnit1 = await new DefenseUnit({
+    race_id: galaditor.id,
+    name: "Arrow tower",
+    maxHealth: 150,
+    health: 150,
+    damage: 60,
+    armor: 3,
+    maxShield: 0,
+    shield: 0,
+    regen: false,
+    cost: 30,
     buildTime: 1,
     isPowered: false
   });
-  await micronDefenseUnit1.save();
-  console.log("Dirt Tower created!");
+  await galaditorDefenseUnit1.save();
+  console.log("Arrow Tower created!");
 
-  const micronDefenseUnit2 = await new DefenseUnit({
-    race_id: micron.id,
-    name: "Trunk",
-    maxHealth: 80,
-    health: 80,
-    damage: 50,
-    armor: 0,
+  const galaditorDefenseUnit2 = await new DefenseUnit({
+    race_id: galaditor.id,
+    name: "Stone tower",
+    maxHealth: 200,
+    health: 200,
+    damage: 70,
+    armor: 4,
     maxShield: 0,
     shield: 0,
-    regen: true,
-    cost: 15,
-    buildTime: 1,
+    regen: false,
+    cost: 40,
+    buildTime: 2,
     isPowered: false
   });
-  await micronDefenseUnit2.save();
-  console.log("Trunk Tower created!");
+  await galaditorDefenseUnit2.save();
+  console.log("Stone Tower created!");
 
-  const micronDefenseUnit3 = await new DefenseUnit({
-    race_id: micron.id,
-    name: "Carcass",
-    maxHealth: 100,
-    health: 100,
-    damage: 50,
-    armor: 0,
+  const galaditorDefenseUnit3 = await new DefenseUnit({
+    race_id: galaditor.id,
+    name: "Sius tower",
+    maxHealth: 300,
+    health: 300,
+    damage: 100,
+    armor: 5,
     maxShield: 0,
     shield: 0,
-    regen: true,
-    cost: 20,
-    buildTime: 1,
+    regen: false,
+    cost: 70,
+    buildTime: 4,
     isPowered: false
   });
-  await micronDefenseUnit3.save();
-  console.log("Carcass Tower created!");
+  await galaditorDefenseUnit3.save();
+  console.log("Sius Tower created!");
 };
 
 const run = async () => {
