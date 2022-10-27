@@ -42,10 +42,10 @@
  justify-content: center;
  gap: 10px;
  margin-bottom: 10px;
+ padding-bottom: 5px;
 }
 .navbar-frame{
-  border-style: solid;
-  background-color: white;
+  background-color: whitesmoke
 }
 
 .center{
@@ -67,14 +67,11 @@
 
 .race-card-frame{
   margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
 }
 .race-card{
-  max-width: 150px;
-  max-height: 75px;
-  border-radius: 4px;
-  background-color: grey;
-  cursor: pointer;
-  transition: all 0.2s;
+
 }
 
 @keyframes App-logo-spin {

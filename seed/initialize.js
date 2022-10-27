@@ -14,13 +14,13 @@ const main = async () => {
   // await race1.save();
   // console.log("Created race1!");
 
-  const Scien = await new Race({
-    name: "Scien",
-    description:
-      "A technological advance faction where they required the advancement as a mean to survive. All units and even building will have shield technology to compansate their weak body."
-  });
-  await Scien.save();
-  console.log("Created Scien race!");
+  // const Scien = await new Race({
+  //   name: "Scien",
+  //   description:
+  //     "A technological advance faction where they required the advancement as a mean to survive. All units and even building will have shield technology to compansate their weak body."
+  // });
+  // await Scien.save();
+  // console.log("Created Scien race!");
 
   // const attackUnit1 = await new AttackUnit({
   //   race_id: "635535d64172fa8cf5010f26",
@@ -148,6 +148,145 @@ const main = async () => {
   // });
   // await defenseUnit3.save();
   // console.log("Shield Tower created!");
+
+  const micron = await new Race({
+    name: "Micron",
+    description:
+      "A primitive faction who like to consume planet and rapidly reproducing. They are weak but able to regenerate their damaged body as long as they do not die."
+  });
+  await micron.save();
+  console.log("Created Micron race!");
+
+  const micronAttackUnit1 = await new AttackUnit({
+    race_id: micron.id,
+    name: "Vairuse",
+    maxHealth: 50,
+    health: 50,
+    damage: 25,
+    armor: 0,
+    maxShield: 0,
+    shield: 0,
+    regen: true,
+    cost: 3,
+    buildTime: 1
+  });
+  await micronAttackUnit1.save();
+  console.log("Micron Attack Unit 1 created!");
+
+  const micronAttackUnit2 = await new AttackUnit({
+    race_id: micron.id,
+    name: "Bakteri",
+    maxHealth: 60,
+    health: 60,
+    damage: 50,
+    armor: 0,
+    maxShield: 0,
+    shield: 0,
+    regen: true,
+    cost: 10,
+    buildTime: 1
+  });
+  await micronAttackUnit2.save();
+  console.log("Micron Attack Unit 2 created!");
+
+  const micronAttackUnit3 = await new AttackUnit({
+    race_id: micron.id,
+    name: "Arkae",
+    maxHealth: 80,
+    health: 80,
+    damage: 40,
+    armor: 0,
+    maxShield: 0,
+    shield: 0,
+    regen: true,
+    cost: 10,
+    buildTime: 1
+  });
+  await micronAttackUnit3.save();
+  console.log("Micron Attack Unit 3 created!");
+
+  const micronAttackUnit4 = await new AttackUnit({
+    race_id: micron.id,
+    name: "Protein",
+    maxHealth: 100,
+    health: 100,
+    damage: 50,
+    armor: 0,
+    maxShield: 0,
+    shield: 0,
+    regen: true,
+    cost: 15,
+    buildTime: 2
+  });
+  await micronAttackUnit4.save();
+  console.log("Micron Attack Unit 4 created!");
+
+  const micronAttackUnit5 = await new AttackUnit({
+    race_id: micron.id,
+    name: "Fungeon",
+    maxHealth: 120,
+    health: 120,
+    damage: 40,
+    armor: 0,
+    maxShield: 0,
+    shield: 0,
+    regen: true,
+    cost: 15,
+    buildTime: 2
+  });
+  await micronAttackUnit5.save();
+  console.log("Micron Attack Unit 5 created!");
+
+  const micronDefenseUnit1 = await new DefenseUnit({
+    race_id: micron.id,
+    name: "Dirt",
+    maxHealth: 60,
+    health: 60,
+    damage: 40,
+    armor: 0,
+    maxShield: 0,
+    shield: 0,
+    regen: true,
+    cost: 10,
+    buildTime: 1,
+    isPowered: false
+  });
+  await micronDefenseUnit1.save();
+  console.log("Dirt Tower created!");
+
+  const micronDefenseUnit2 = await new DefenseUnit({
+    race_id: micron.id,
+    name: "Trunk",
+    maxHealth: 80,
+    health: 80,
+    damage: 50,
+    armor: 0,
+    maxShield: 0,
+    shield: 0,
+    regen: true,
+    cost: 15,
+    buildTime: 1,
+    isPowered: false
+  });
+  await micronDefenseUnit2.save();
+  console.log("Trunk Tower created!");
+
+  const micronDefenseUnit3 = await new DefenseUnit({
+    race_id: micron.id,
+    name: "Carcass",
+    maxHealth: 100,
+    health: 100,
+    damage: 50,
+    armor: 0,
+    maxShield: 0,
+    shield: 0,
+    regen: true,
+    cost: 20,
+    buildTime: 1,
+    isPowered: false
+  });
+  await micronDefenseUnit3.save();
+  console.log("Carcass Tower created!");
 };
 
 const run = async () => {
