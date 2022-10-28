@@ -6,6 +6,9 @@ const Home = (params) => {
   let navigate = useNavigate();
 
   let homeToRender;
+  let submitButton = (
+    <input disabled type="submit" value="Create new account" />
+  );
 
   const [userFormState, updateUserForm] = useState({
     name: "",
@@ -40,6 +43,12 @@ const Home = (params) => {
     navigate(`/new/${newUser.data._id}/${newUser.data.name}`);
   };
 
+  if (userFormState.email && userFormState.name) {
+    submitButton = (
+      <input className="click-able" type="submit" value="Create new account" />
+    );
+  }
+
   if (params.new) {
     homeToRender = (
       <div className="third">
@@ -66,7 +75,7 @@ const Home = (params) => {
           />
           <br />
           <br />
-          <input type="submit" value="Create new account" />
+          {submitButton}
         </form>
         <p>
           PS: Please use your unique url provided if you want use account
