@@ -9,7 +9,7 @@ Welcome to FL War. This is a multiplayer game where two players fight for superm
 
 Players will move semi asynchronously to build and command their unit. Players need to choose race and design their team that they will bring to battle arena.
 
-### Phase 1 build
+### Phase 1 build (Completed)
 * Working home page & about page
 * Create user object (no password)
 * Create deck
@@ -17,7 +17,7 @@ Players will move semi asynchronously to build and command their unit. Players n
     * Update deck
     * Delete deck
 
-### Phase 2 build
+### Phase 2 build (In Progress)
 * Arena creation (include harvester)
 * Spawn builder
 * Move builder
