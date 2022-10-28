@@ -87,12 +87,10 @@ const [needReload, setNeedReload] = useState(true)
   }
 
   const getDeckData = async () => {
-    console.log("Deck.jsx getDeckData function get api account called")
     const userData = await axios
     .get(`http://localhost:3001/api/account/${props.userId}`)
     .then((response) => {
         if(response.data.deck_id){
-            console.log("this is response data deck id",response.data.deck_id)
             updateCurrentDeckId(response.data.deck_id)
         }
         return response;
@@ -102,7 +100,6 @@ const [needReload, setNeedReload] = useState(true)
     })
 
     if(currentDeckId && needReload){
-        console.log("Deck.jsx getDeckData function get api deck called")
         const deckIdData = await axios
         .get(`http://localhost:3001/api/deck/${currentDeckId}`)
         .then((response) => {
@@ -133,7 +130,6 @@ const [needReload, setNeedReload] = useState(true)
         let defense1Data
         let defense2Data
 
-        console.log("Deck.jsx line 119 get race api called")
         const raceDisplayData = await axios
         .get(`http://localhost:3001/api/race/${deckIdDisplay.race_id}`)
         .then((response) => {
@@ -208,13 +204,10 @@ const [needReload, setNeedReload] = useState(true)
   }
 
   const deleteDeck = async () => {
-    console.log(currentDeckId)
-    console.log("Deck.jsx Api called")
     const deckDelete = await axios
     .delete(`http://localhost:3001/api/deck/${currentDeckId}`)
     .then((response) => {
         initiateDeletedDeck()
-        console.log("view mode after deck deletion", viewMode)
        
         // clean deck display
         updateDeckDisplay({
@@ -268,9 +261,6 @@ const [needReload, setNeedReload] = useState(true)
   }
 
   const attackUnitSelect = (e) => {
-    console.log(e.currentTarget)
-    console.log(e.currentTarget.id)
-    console.log(e.currentTarget.getAttribute("value"))
     if (!deckForm.attack1_id){
         updateDeckForm({ ...deckForm, attack1_id: e.currentTarget.id})
         updateSelectedUnitName({ ...selectedUnitName, attack1_name: e.currentTarget.getAttribute("value")})
@@ -281,7 +271,7 @@ const [needReload, setNeedReload] = useState(true)
         updateDeckForm({ ...deckForm, attack3_id: e.currentTarget.id})
         updateSelectedUnitName({ ...selectedUnitName, attack3_name: e.currentTarget.getAttribute("value")})
     } else {
-        // let player know they can only have 3 attack units
+        // Todo: let player know they can only have 3 attack units
     }
   }
 
@@ -293,7 +283,7 @@ const [needReload, setNeedReload] = useState(true)
         updateDeckForm({ ...deckForm, defense2_id: e.currentTarget.id})
         updateSelectedUnitName({ ...selectedUnitName, defense2_name: e.currentTarget.getAttribute("value")})
     } else {
-        // let player know they can only have 2 defense units
+        // Todo: let player know they can only have 2 defense units
     }
   }
 
@@ -317,14 +307,11 @@ const [needReload, setNeedReload] = useState(true)
 }
 
   const createDeck = async (e) => {
-    // to do, check if deck is available. A user can only have one deck.
     if(currentUser.deck_id){
-        console.log("update deck api called")
         const updateDeckData = await axios
         .put(`http://localhost:3001/api/deck/${currentDeckId}`,deckForm)
         .then((response) => {
             setNeedReload(true)
-            console.log("Change to manage deck view")
             initiateManageDeck()
             return response
         })
@@ -332,7 +319,6 @@ const [needReload, setNeedReload] = useState(true)
             console.error(error)
         })
     } else{
-        console.log("post deck api called");
         const createDeckData = await axios
         .post(`http://localhost:3001/api/deck`,deckForm)
         .then((response) => {
@@ -340,7 +326,6 @@ const [needReload, setNeedReload] = useState(true)
             return response;
         })
         .then((response) => {
-            console.log("Change to manage deck view")
             initiateManageDeck()
         })
         .catch((error) => {
@@ -351,14 +336,12 @@ const [needReload, setNeedReload] = useState(true)
   }
 
   const updatePlayerRace = (e) => {
-    console.log("Race selected is ", e.target.value)
     updateRaceSelected(e.target.value)
     updateDeckForm({ ...deckForm, race_id: e.target.id, user_id: props.userId})
     initiateUnitSelection();
   }
 
   const getAllAttackUnitList = async () => {
-    console.log("get all Attack Unit api called");
     const attackUnitsData = await axios
     .get(`http://localhost:3001/api/attackUnit/${raceSelected}`)
     .then((response) => {
@@ -373,7 +356,6 @@ const [needReload, setNeedReload] = useState(true)
   }
 
   const getAllDefenseUnitList = async () => {
-    console.log("get all Defense Unit api called");
     const defenseUnitsData = await axios
     .get(`http://localhost:3001/api/defenseUnit/${raceSelected}`)
     .then((response) => {
@@ -388,7 +370,6 @@ const [needReload, setNeedReload] = useState(true)
   }
 
   const getAllRacesData = async () => {
-    console.log("get all race api called");
     const racesData = await axios
       .get("http://localhost:3001/api/race/")
       .then((response) => {
@@ -398,7 +379,7 @@ const [needReload, setNeedReload] = useState(true)
         updateRaceData(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
@@ -428,7 +409,6 @@ const [needReload, setNeedReload] = useState(true)
 
   useEffect(() => {
     if(props.userId){
-        console.log("run first use effect function")
         getUserObject()
         getDeckData()
     }
@@ -495,12 +475,10 @@ const [needReload, setNeedReload] = useState(true)
   }
 
   if (currentUser.deck_id && viewMode !== "Manage deck" && viewMode !== "Unit selection" && viewMode !== "Deleted deck"){
-    console.log("change to manage deck view")
     initiateManageDeck();
   }
 
   if (viewMode === "Race selection") {
-    console.log("View mode = Race selection")
     toRender = (
       <div>
         <h4>Select your race</h4>
@@ -508,7 +486,6 @@ const [needReload, setNeedReload] = useState(true)
       </div>
     );
   } else if(viewMode === "Unit selection") {
-    console.log("View mode = Unit selection")
     toRender=(
         <div>
             {attackUnitListFrame}
@@ -519,7 +496,6 @@ const [needReload, setNeedReload] = useState(true)
         </div>
     )
   } else if(viewMode === "Manage deck"){
-    console.log("View mode = Manage deck")
     toRender=(
         <div className="deck-wrapper">
             <h3>Your Deck</h3>
@@ -542,16 +518,12 @@ const [needReload, setNeedReload] = useState(true)
         </div>
     )
   } else if (!props.deckId || viewMode==="Deleted deck") {
-    console.log("View mode = Deleted deck / no deckId")
     toRender = (
       <div>
         <button onClick={initiateRaceSelection}>Create new deck</button>
       </div>
     );
   }
-
-  
-
 
   return toRender;
 };

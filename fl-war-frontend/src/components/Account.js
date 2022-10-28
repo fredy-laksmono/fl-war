@@ -15,7 +15,6 @@ const Account = (props) => {
   const { userId } = useParams();
 
   const check = async (id) => {
-    console.log("Account.js check function get account api called");
     const userObject = await axios
       .get(`http://localhost:3001/api/account/${id}`)
       .then((response) => {
@@ -23,7 +22,7 @@ const Account = (props) => {
         return response;
       })
       .catch((error) => {
-        console.log("this is error", error);
+        console.error(error);
       });
     if (userObject.data._id === id) {
       updatePlayerData({
@@ -45,7 +44,6 @@ const Account = (props) => {
     if (userId.length === 24) {
       check(userId);
     }
-    //updateRender();
   }, []);
 
   if (playerDataState.name) {

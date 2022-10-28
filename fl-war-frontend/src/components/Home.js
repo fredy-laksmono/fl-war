@@ -25,16 +25,14 @@ const Home = (params) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Home.js Api called");
     const newUser = await axios
       .post("http://localhost:3001/api/newUser/", userFormState)
       .then((response) => {
         return response;
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
-    console.log(newUser.data._id);
     updateUserForm({
       name: "",
       email: ""
