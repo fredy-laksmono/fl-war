@@ -421,8 +421,8 @@ const [needReload, setNeedReload] = useState(true)
     }
   }, [viewMode,currentDeckId,deckIdDisplay]);
 
-  if (deckForm.attack3_id && deckForm.defense2_id){
-    createDeckButton = <button type="button" id="createDeck" onClick={createDeck}>Create Deck</button>
+  if (deckForm.attack1_id && deckForm.attack2_id && deckForm.attack3_id && deckForm.defense1_id && deckForm.defense2_id){
+    createDeckButton = <button type="button" id="createDeck" className="click-able" onClick={createDeck}>Create Deck</button>
   }
 
   if (attackUnitList && defenseUnitList){
@@ -453,11 +453,11 @@ const [needReload, setNeedReload] = useState(true)
     deckFrame = (
         <div>
             <div>
-                <button id="attack1" onClick={removeUnitSelect}>{selectedUnitName.attack1_name}</button>
-                <button id="attack2" onClick={removeUnitSelect}>{selectedUnitName.attack2_name}</button>
-                <button id="attack3" onClick={removeUnitSelect}>{selectedUnitName.attack3_name}</button>
-                <button id="defense1" onClick={removeUnitSelect}>{selectedUnitName.defense1_name}</button>
-                <button id="defense2" onClick={removeUnitSelect}>{selectedUnitName.defense2_name}</button>
+                <button className="click-able" id="attack1" onClick={removeUnitSelect}>{selectedUnitName.attack1_name}</button>
+                <button className="click-able" id="attack2" onClick={removeUnitSelect}>{selectedUnitName.attack2_name}</button>
+                <button className="click-able" id="attack3" onClick={removeUnitSelect}>{selectedUnitName.attack3_name}</button>
+                <button className="click-able" id="defense1" onClick={removeUnitSelect}>{selectedUnitName.defense1_name}</button>
+                <button className="click-able" id="defense2" onClick={removeUnitSelect}>{selectedUnitName.defense2_name}</button>
             </div>
             <br/>
             <div>
