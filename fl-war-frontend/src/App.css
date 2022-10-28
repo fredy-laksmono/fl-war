@@ -29,12 +29,13 @@
 }
 
 .card {
-  max-width: 150px;
-  max-height: 75px;
+  max-width: 200px;
+  max-height: 200px;
   border-radius: 4px;
-  background-color: grey;
+  background-color: lightblue;
   cursor: pointer;
   transition: all 0.2s;
+  padding: 10px;
 }
 
 .nav-bar {
@@ -94,6 +95,12 @@
   padding-top: 2px;
   font-size: larger;
   background-color: lightblue;
+}
+
+.flex-row{
+  display: flex;
+ justify-content: center;
+ gap: 10px;
 }
 
 .click-able{

@@ -161,7 +161,7 @@ const main = async () => {
     damage: 40,
     armor: 1,
     maxShield: 80,
-    shield: 0,
+    shield: 80,
     regen: false,
     cost: 15,
     buildTime: 1

@@ -448,18 +448,26 @@ const [needReload, setNeedReload] = useState(true)
   if (attackUnitList && defenseUnitList){
     attackUnitListFrame = (
         <div>
-            {attackUnitList.map((attackUnit) => (
-                <UnitCard key={attackUnit._id} data={attackUnit} unitSelect={attackUnitSelect}/>
-            ))}
+            <h3>Attack Unit</h3>
+             <div className="flex-row">
+                {attackUnitList.map((attackUnit) => (
+                    <UnitCard key={attackUnit._id} data={attackUnit} unitSelect={attackUnitSelect}/>
+                ))}
+            </div>
         </div>
+        
     )
 
     defenseUnitListFrame = (
         <div>
-            {defenseUnitList.map((defenseUnit) => (
-                <UnitCard key={defenseUnit._id} data={defenseUnit} unitSelect={defenseUnitSelect}/>
-            ))}
+            <h3>Defense Unit</h3>
+            <div className="flex-row">
+                {defenseUnitList.map((defenseUnit) => (
+                    <UnitCard key={defenseUnit._id} data={defenseUnit} unitSelect={defenseUnitSelect}/>
+                ))}
+            </div>
         </div>
+
     )
 
     deckFrame = (
