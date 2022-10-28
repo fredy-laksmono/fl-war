@@ -521,19 +521,23 @@ const [needReload, setNeedReload] = useState(true)
   } else if(viewMode === "Manage deck"){
     console.log("View mode = Manage deck")
     toRender=(
-        <div>
-            Your Deck
-            <div>
+        <div className="deck-wrapper">
+            <h3>Your Deck</h3>
+            <div className="deck-frame">
                 <div>Race: {deckDisplay.race.name}</div>
-                <div>Attack1: {deckDisplay.attack1.name}</div>
-                <div>Attack2: {deckDisplay.attack2.name}</div>
-                <div>Attack3: {deckDisplay.attack3.name}</div>
-                <div>Defense1: {deckDisplay.defense1.name}</div>
-                <div>Defense2: {deckDisplay.defense2.name}</div>
+                <div className="deck-attack">
+                    <div>Attack1: {deckDisplay.attack1.name}</div>
+                    <div>Attack2: {deckDisplay.attack2.name}</div>
+                    <div>Attack3: {deckDisplay.attack3.name}</div>
+                </div>
+                <div className="deck-defense">
+                    <div>Defense1: {deckDisplay.defense1.name}</div>
+                    <div>Defense2: {deckDisplay.defense2.name}</div>
+                </div>
             </div>
             <div>
-                <button onClick={manageDeck}>Edit deck</button>
-                <button onClick={deleteDeck}>Delete deck</button>
+                <button className="click-able" onClick={manageDeck}>Edit deck</button>
+                <button className="click-able" onClick={deleteDeck}>Delete deck</button>
             </div>
         </div>
     )

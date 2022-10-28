@@ -103,6 +103,22 @@
  gap: 10px;
 }
 
+.deck-frame{
+  display:flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.deck-attack, .deck-defense{
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+
 .click-able{
   cursor: pointer;
   transition: all 0.2s;
