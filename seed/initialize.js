@@ -7,23 +7,15 @@ const { DefenseUnit } = require("../models");
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 const main = async () => {
-  // const race1 = await new Race({
+  // const terran = await new Race({
   //   name: "Terran",
   //   description: "Your normal human faction where everything is so soso."
   // });
-  // await race1.save();
-  // console.log("Created race1!");
+  // await terran.save();
+  // console.log("Created terran race!");
 
-  // const Scien = await new Race({
-  //   name: "Scien",
-  //   description:
-  //     "A technological advance faction where they required the advancement as a mean to survive. All units and even building will have shield technology to compansate their weak body."
-  // });
-  // await Scien.save();
-  // console.log("Created Scien race!");
-
-  // const attackUnit1 = await new AttackUnit({
-  //   race_id: "635535d64172fa8cf5010f26",
+  // const terranAttackUnit1 = await new AttackUnit({
+  //   race_id: terran.id,
   //   name: "Light Unit",
   //   maxHealth: 60,
   //   health: 60,
@@ -35,10 +27,11 @@ const main = async () => {
   //   cost: 10,
   //   buildTime: 1
   // });
-  // await attackUnit1.save();
-  // console.log("Attack Unit 1 created!");
-  // const attackUnit2 = await new AttackUnit({
-  //   race_id: "635535d64172fa8cf5010f26",
+  // await terranAttackUnit1.save();
+  // console.log("terran Attack Unit 1 created!");
+  //
+  // const terranAttackUnit2 = await new AttackUnit({
+  //   race_id: terran.id,
   //   name: "Medium Unit",
   //   maxHealth: 100,
   //   health: 100,
@@ -50,10 +43,11 @@ const main = async () => {
   //   cost: 20,
   //   buildTime: 2
   // });
-  // await attackUnit2.save();
-  // console.log("Attack Unit 2 created!");
-  // const attackUnit3 = await new AttackUnit({
-  //   race_id: "635535d64172fa8cf5010f26",
+  // await terranAttackUnit2.save();
+  // console.log("terran Attack Unit 2 created!");
+  //
+  // const terranAttackUnit3 = await new AttackUnit({
+  //   race_id: terran.id,
   //   name: "Heavy Unit",
   //   maxHealth: 150,
   //   health: 150,
@@ -65,10 +59,11 @@ const main = async () => {
   //   cost: 30,
   //   buildTime: 3
   // });
-  // await attackUnit3.save();
-  // console.log("Attack Unit 3 created!");
-  // const attackUnit4 = await new AttackUnit({
-  //   race_id: "635535d64172fa8cf5010f26",
+  // await terranAttackUnit3.save();
+  // console.log("terran Attack Unit 3 created!");
+  //
+  // const terranAttackUnit4 = await new AttackUnit({
+  //   race_id: terran.id,
   //   name: "Shield Unit",
   //   maxHealth: 100,
   //   health: 100,
@@ -80,10 +75,11 @@ const main = async () => {
   //   cost: 30,
   //   buildTime: 3
   // });
-  // await attackUnit4.save();
-  // console.log("Attack Unit 4 created!");
-  // const attackUnit5 = await new AttackUnit({
-  //   race_id: "635535d64172fa8cf5010f26",
+  // await terranAttackUnit4.save();
+  // console.log("terran Attack Unit 4 created!");
+  //
+  // const terranAttackUnit5 = await new AttackUnit({
+  //   race_id: terran.id,
   //   name: "Armor Unit",
   //   maxHealth: 100,
   //   health: 100,
@@ -95,11 +91,11 @@ const main = async () => {
   //   cost: 30,
   //   buildTime: 3
   // });
-  // await attackUnit5.save();
-  // console.log("Attack Unit 5 created!");
+  // await terranAttackUnit5.save();
+  // console.log("terran Attack Unit 5 created!");
 
-  // const defenseUnit1 = await new DefenseUnit({
-  //   race_id: "635535d64172fa8cf5010f26",
+  // const terranDefenseUnit1 = await new DefenseUnit({
+  //   race_id: terran.id,
   //   name: "Scout Tower",
   //   maxHealth: 100,
   //   health: 100,
@@ -112,15 +108,15 @@ const main = async () => {
   //   buildTime: 1,
   //   isPowered: false
   // });
-  // await defenseUnit1.save();
+  // await terranDefenseUnit1.save();
   // console.log("Scout Tower created!");
 
-  // const defenseUnit2 = await new DefenseUnit({
-  //   race_id: "635535d64172fa8cf5010f26",
+  // const terranDefenseUnit2 = await new DefenseUnit({
+  //   race_id: terran.id,
   //   name: "Heavy Tower",
   //   maxHealth: 200,
   //   health: 200,
-  //   damage: 0,
+  //   damage: 70,
   //   armor: 5,
   //   maxShield: 0,
   //   shield: 0,
@@ -129,11 +125,11 @@ const main = async () => {
   //   buildTime: 2,
   //   isPowered: false
   // });
-  // await defenseUnit2.save();
+  // await terranDefenseUnit2.save();
   // console.log("Heavy Tower created!");
 
-  // const defenseUnit3 = await new DefenseUnit({
-  //   race_id: "635535d64172fa8cf5010f26",
+  // const terranDefenseUnit3 = await new DefenseUnit({
+  //   race_id: terran.id,
   //   name: "Shield Tower",
   //   maxHealth: 100,
   //   health: 100,
@@ -146,8 +142,147 @@ const main = async () => {
   //   buildTime: 2,
   //   isPowered: false
   // });
-  // await defenseUnit3.save();
+  // await terranDefenseUnit3.save();
   // console.log("Shield Tower created!");
+
+  const scien = await new Race({
+    name: "Scien",
+    description:
+      "A technological advance faction where they required the advancement as a mean to survive. All units and even building will have shield technology to compansate their weak body."
+  });
+  await scien.save();
+  console.log("Created Scien race!");
+
+  const scienAttackUnit1 = await new AttackUnit({
+    race_id: scien.id,
+    name: "Little Boy",
+    maxHealth: 30,
+    health: 30,
+    damage: 40,
+    armor: 1,
+    maxShield: 80,
+    shield: 0,
+    regen: false,
+    cost: 15,
+    buildTime: 1
+  });
+  await scienAttackUnit1.save();
+  console.log("scien Attack Unit 1 created!");
+
+  const scienAttackUnit2 = await new AttackUnit({
+    race_id: scien.id,
+    name: "Little Dude",
+    maxHealth: 40,
+    health: 40,
+    damage: 50,
+    armor: 1,
+    maxShield: 120,
+    shield: 120,
+    regen: false,
+    cost: 25,
+    buildTime: 2
+  });
+  await scienAttackUnit2.save();
+  console.log("scien Attack Unit 2 created!");
+
+  const scienAttackUnit3 = await new AttackUnit({
+    race_id: scien.id,
+    name: "Little Man",
+    maxHealth: 50,
+    health: 50,
+    damage: 60,
+    armor: 1,
+    maxShield: 150,
+    shield: 150,
+    regen: false,
+    cost: 35,
+    buildTime: 3
+  });
+  await scienAttackUnit3.save();
+  console.log("scien Attack Unit 3 created!");
+
+  const scienAttackUnit4 = await new AttackUnit({
+    race_id: scien.id,
+    name: "Little Glass",
+    maxHealth: 40,
+    health: 40,
+    damage: 200,
+    armor: 1,
+    maxShield: 100,
+    shield: 100,
+    regen: false,
+    cost: 50,
+    buildTime: 4
+  });
+  await scienAttackUnit4.save();
+  console.log("scien Attack Unit 4 created!");
+
+  const scienAttackUnit5 = await new AttackUnit({
+    race_id: scien.id,
+    name: "Master Mind",
+    maxHealth: 70,
+    health: 70,
+    damage: 70,
+    armor: 1,
+    maxShield: 250,
+    shield: 250,
+    regen: false,
+    cost: 60,
+    buildTime: 4
+  });
+  await scienAttackUnit5.save();
+  console.log("scien Attack Unit 5 created!");
+
+  const scienDefenseUnit1 = await new DefenseUnit({
+    race_id: scien.id,
+    name: "Shield Tower",
+    maxHealth: 10,
+    health: 10,
+    damage: 60,
+    armor: 1,
+    maxShield: 200,
+    shield: 200,
+    regen: false,
+    cost: 60,
+    buildTime: 1,
+    isPowered: false
+  });
+  await scienDefenseUnit1.save();
+  console.log("scien shield Tower created!");
+
+  const scienDefenseUnit2 = await new DefenseUnit({
+    race_id: scien.id,
+    name: "Shield Sniper Tower",
+    maxHealth: 10,
+    health: 10,
+    damage: 150,
+    armor: 1,
+    maxShield: 100,
+    shield: 100,
+    regen: false,
+    cost: 50,
+    buildTime: 2,
+    isPowered: false
+  });
+  await scienDefenseUnit2.save();
+  console.log("scien Heavy Tower created!");
+
+  const scienDefenseUnit3 = await new DefenseUnit({
+    race_id: scien.id,
+    name: "Small Tower",
+    maxHealth: 10,
+    health: 10,
+    damage: 60,
+    armor: 1,
+    maxShield: 100,
+    shield: 100,
+    regen: false,
+    cost: 20,
+    buildTime: 1,
+    isPowered: false
+  });
+  await scienDefenseUnit3.save();
+  console.log("scien Shield Tower created!");
 
   // const micron = await new Race({
   //   name: "Micron",
@@ -288,144 +423,144 @@ const main = async () => {
   // await micronDefenseUnit3.save();
   // console.log("Carcass Tower created!");
 
-  const galaditor = await new Race({
-    name: "Galaditor",
-    description:
-      "A once thought extinct civilization. Comprise of powerful warrior who hate technology."
-  });
-  await galaditor.save();
-  console.log("Created Galaditor race!");
+  // const galaditor = await new Race({
+  //   name: "Galaditor",
+  //   description:
+  //     "A once thought extinct civilization. Comprise of powerful warrior who despise machinery."
+  // });
+  // await galaditor.save();
+  // console.log("Created Galaditor race!");
 
-  const galaditorAttackUnit1 = await new AttackUnit({
-    race_id: galaditor.id,
-    name: "Slavi",
-    maxHealth: 100,
-    health: 100,
-    damage: 40,
-    armor: 1,
-    maxShield: 0,
-    shield: 0,
-    regen: false,
-    cost: 15,
-    buildTime: 1
-  });
-  await galaditorAttackUnit1.save();
-  console.log("Galaditor Attack Unit 1 created!");
+  // const galaditorAttackUnit1 = await new AttackUnit({
+  //   race_id: galaditor.id,
+  //   name: "Slavi",
+  //   maxHealth: 100,
+  //   health: 100,
+  //   damage: 40,
+  //   armor: 1,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: false,
+  //   cost: 15,
+  //   buildTime: 1
+  // });
+  // await galaditorAttackUnit1.save();
+  // console.log("Galaditor Attack Unit 1 created!");
 
-  const galaditorAttackUnit2 = await new AttackUnit({
-    race_id: galaditor.id,
-    name: "Enforsir",
-    maxHealth: 120,
-    health: 120,
-    damage: 50,
-    armor: 3,
-    maxShield: 0,
-    shield: 0,
-    regen: false,
-    cost: 25,
-    buildTime: 2
-  });
-  await galaditorAttackUnit2.save();
-  console.log("Galaditor Attack Unit 2 created!");
+  // const galaditorAttackUnit2 = await new AttackUnit({
+  //   race_id: galaditor.id,
+  //   name: "Enforsir",
+  //   maxHealth: 120,
+  //   health: 120,
+  //   damage: 50,
+  //   armor: 3,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: false,
+  //   cost: 25,
+  //   buildTime: 2
+  // });
+  // await galaditorAttackUnit2.save();
+  // console.log("Galaditor Attack Unit 2 created!");
 
-  const galaditorAttackUnit3 = await new AttackUnit({
-    race_id: galaditor.id,
-    name: "Haunt",
-    maxHealth: 120,
-    health: 120,
-    damage: 70,
-    armor: 3,
-    maxShield: 0,
-    shield: 0,
-    regen: false,
-    cost: 40,
-    buildTime: 2
-  });
-  await galaditorAttackUnit3.save();
-  console.log("Galaditor Attack Unit 3 created!");
+  // const galaditorAttackUnit3 = await new AttackUnit({
+  //   race_id: galaditor.id,
+  //   name: "Haunt",
+  //   maxHealth: 120,
+  //   health: 120,
+  //   damage: 70,
+  //   armor: 3,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: false,
+  //   cost: 40,
+  //   buildTime: 2
+  // });
+  // await galaditorAttackUnit3.save();
+  // console.log("Galaditor Attack Unit 3 created!");
 
-  const galaditorAttackUnit4 = await new AttackUnit({
-    race_id: galaditor.id,
-    name: "Vikang",
-    maxHealth: 150,
-    health: 150,
-    damage: 60,
-    armor: 4,
-    maxShield: 0,
-    shield: 0,
-    regen: false,
-    cost: 50,
-    buildTime: 3
-  });
-  await galaditorAttackUnit4.save();
-  console.log("Galaditor Attack Unit 4 created!");
+  // const galaditorAttackUnit4 = await new AttackUnit({
+  //   race_id: galaditor.id,
+  //   name: "Vikang",
+  //   maxHealth: 150,
+  //   health: 150,
+  //   damage: 60,
+  //   armor: 4,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: false,
+  //   cost: 50,
+  //   buildTime: 3
+  // });
+  // await galaditorAttackUnit4.save();
+  // console.log("Galaditor Attack Unit 4 created!");
 
-  const galaditorAttackUnit5 = await new AttackUnit({
-    race_id: galaditor.id,
-    name: "Herkuas",
-    maxHealth: 200,
-    health: 200,
-    damage: 70,
-    armor: 5,
-    maxShield: 0,
-    shield: 0,
-    regen: false,
-    cost: 60,
-    buildTime: 4
-  });
-  await galaditorAttackUnit5.save();
-  console.log("Galaditor Attack Unit 5 created!");
+  // const galaditorAttackUnit5 = await new AttackUnit({
+  //   race_id: galaditor.id,
+  //   name: "Herkuas",
+  //   maxHealth: 200,
+  //   health: 200,
+  //   damage: 70,
+  //   armor: 5,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: false,
+  //   cost: 60,
+  //   buildTime: 4
+  // });
+  // await galaditorAttackUnit5.save();
+  // console.log("Galaditor Attack Unit 5 created!");
 
-  const galaditorDefenseUnit1 = await new DefenseUnit({
-    race_id: galaditor.id,
-    name: "Arrow tower",
-    maxHealth: 150,
-    health: 150,
-    damage: 60,
-    armor: 3,
-    maxShield: 0,
-    shield: 0,
-    regen: false,
-    cost: 30,
-    buildTime: 1,
-    isPowered: false
-  });
-  await galaditorDefenseUnit1.save();
-  console.log("Arrow Tower created!");
+  // const galaditorDefenseUnit1 = await new DefenseUnit({
+  //   race_id: galaditor.id,
+  //   name: "Arrow tower",
+  //   maxHealth: 150,
+  //   health: 150,
+  //   damage: 60,
+  //   armor: 3,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: false,
+  //   cost: 30,
+  //   buildTime: 1,
+  //   isPowered: false
+  // });
+  // await galaditorDefenseUnit1.save();
+  // console.log("Arrow Tower created!");
 
-  const galaditorDefenseUnit2 = await new DefenseUnit({
-    race_id: galaditor.id,
-    name: "Stone tower",
-    maxHealth: 200,
-    health: 200,
-    damage: 70,
-    armor: 4,
-    maxShield: 0,
-    shield: 0,
-    regen: false,
-    cost: 40,
-    buildTime: 2,
-    isPowered: false
-  });
-  await galaditorDefenseUnit2.save();
-  console.log("Stone Tower created!");
+  // const galaditorDefenseUnit2 = await new DefenseUnit({
+  //   race_id: galaditor.id,
+  //   name: "Stone tower",
+  //   maxHealth: 200,
+  //   health: 200,
+  //   damage: 70,
+  //   armor: 4,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: false,
+  //   cost: 40,
+  //   buildTime: 2,
+  //   isPowered: false
+  // });
+  // await galaditorDefenseUnit2.save();
+  // console.log("Stone Tower created!");
 
-  const galaditorDefenseUnit3 = await new DefenseUnit({
-    race_id: galaditor.id,
-    name: "Sius tower",
-    maxHealth: 300,
-    health: 300,
-    damage: 100,
-    armor: 5,
-    maxShield: 0,
-    shield: 0,
-    regen: false,
-    cost: 70,
-    buildTime: 4,
-    isPowered: false
-  });
-  await galaditorDefenseUnit3.save();
-  console.log("Sius Tower created!");
+  // const galaditorDefenseUnit3 = await new DefenseUnit({
+  //   race_id: galaditor.id,
+  //   name: "Sius tower",
+  //   maxHealth: 300,
+  //   health: 300,
+  //   damage: 100,
+  //   armor: 5,
+  //   maxShield: 0,
+  //   shield: 0,
+  //   regen: false,
+  //   cost: 70,
+  //   buildTime: 4,
+  //   isPowered: false
+  // });
+  // await galaditorDefenseUnit3.save();
+  // console.log("Sius Tower created!");
 };
 
 const run = async () => {

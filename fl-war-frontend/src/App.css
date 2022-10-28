@@ -67,11 +67,38 @@
 
 .race-card-frame{
   margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-.race-card{
+.race-card-wrapper{
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
 
+.race-card-body{
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  border-style: solid;
+  border-radius: 20px;
+  padding: 5px;
+  margin: 5px
+}
+
+.race-name{
+  border-style: solid;
+  border-radius: 20px;
+  margin-top: -7px;
+  margin-left: -7px;
+  margin-right: -7px;
+  padding-top: 2px;
+  font-size: larger;
+  background-color: lightblue;
+}
+
+.click-able{
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 @keyframes App-logo-spin {
