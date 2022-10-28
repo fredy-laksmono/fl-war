@@ -511,7 +511,7 @@ const [needReload, setNeedReload] = useState(true)
                     <div>Defense2: {deckDisplay.defense2.name}</div>
                 </div>
             </div>
-            <div>
+            <div className="edit-delete-deck-frame">
                 <button className="click-able" onClick={manageDeck}>Edit deck</button>
                 <button className="click-able" onClick={deleteDeck}>Delete deck</button>
             </div>

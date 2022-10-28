@@ -149,6 +149,12 @@ h3{
   gap: 10px;
 }
 
+.edit-delete-deck-frame{
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
 .click-able{
   cursor: pointer;
   transition: all 0.2s;
