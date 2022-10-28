@@ -10,7 +10,7 @@ const NewAccount = (props) => {
         Please save/bookmark the folowing url as it will be how you will login in the future to your account.
         <br/>
         <br/>
-        {<Link to={`/account/${userId}`}>http://localhost:3000/account/{userId}</Link>}
+        {<Link to={`/account/${userId}`}>https://fl-war.herokuapp.com/account/{userId}</Link>}
         <br/>
         <br/>
         Click the url above to start the game with your newly created account.
