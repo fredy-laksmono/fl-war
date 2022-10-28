@@ -452,7 +452,7 @@ const [needReload, setNeedReload] = useState(true)
 
     deckFrame = (
         <div>
-            <div>
+            <div className="create-deck-frame">
                 <button className="click-able" id="attack1" onClick={removeUnitSelect}>{selectedUnitName.attack1_name}</button>
                 <button className="click-able" id="attack2" onClick={removeUnitSelect}>{selectedUnitName.attack2_name}</button>
                 <button className="click-able" id="attack3" onClick={removeUnitSelect}>{selectedUnitName.attack3_name}</button>
