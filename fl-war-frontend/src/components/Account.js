@@ -4,7 +4,8 @@ import Deck from "./Deck";
 import axios from "axios";
 
 const Account = (props) => {
-  const baseUrl = process.env.baseURL || "http://localhost:3001";
+  let baseUrl = process.env.baseUrl || "http://localhost:3001";
+  baseUrl = "https://fl-war.herokuapp.com/";
   const [playerDataState, updatePlayerData] = useState({
     name: "",
     id: "",
