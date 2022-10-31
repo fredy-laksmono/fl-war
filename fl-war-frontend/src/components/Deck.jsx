@@ -4,11 +4,13 @@ import RaceCard from "./RaceCard";
 import UnitCard from "./UnitCard";
 
 const Deck = (props) => {
-  const [viewMode, setViewMode] = useState("none");
-  const [raceData, updateRaceData] = useState("");
-  const [raceSelected, updateRaceSelected] = useState("")
-const [attackUnitList, updateAttackUnitList] = useState("")
-const [defenseUnitList, updateDefenseUnitList] = useState("")
+    let baseUrl = process.env.baseUrl || "http://localhost:3001"; // To-do: find a way to do it dynamically
+    baseUrl = "https://fl-war.herokuapp.com"; // Hardcoding for heroku deployment, remove this once found a way to do it dynamically
+    const [viewMode, setViewMode] = useState("none");
+    const [raceData, updateRaceData] = useState("");
+    const [raceSelected, updateRaceSelected] = useState("")
+    const [attackUnitList, updateAttackUnitList] = useState("")
+    const [defenseUnitList, updateDefenseUnitList] = useState("")
 
 const [deckForm, updateDeckForm] = useState({
     race_id: "",
@@ -74,7 +76,7 @@ const [needReload, setNeedReload] = useState(true)
 
   const getUserObject = async () => {
     const userObject = await axios
-    .get(`http://localhost:3001/api/account/${props.userId}`)
+    .get(`${baseUrl}/api/account/${props.userId}`)
     .then((response) => {
         if (response.data._id){
             updateCurrentUser(response.data)
@@ -88,7 +90,7 @@ const [needReload, setNeedReload] = useState(true)
 
   const getDeckData = async () => {
     const userData = await axios
-    .get(`http://localhost:3001/api/account/${props.userId}`)
+    .get(`${baseUrl}/api/account/${props.userId}`)
     .then((response) => {
         if(response.data.deck_id){
             updateCurrentDeckId(response.data.deck_id)
@@ -101,7 +103,7 @@ const [needReload, setNeedReload] = useState(true)
 
     if(currentDeckId && needReload){
         const deckIdData = await axios
-        .get(`http://localhost:3001/api/deck/${currentDeckId}`)
+        .get(`${baseUrl}/api/deck/${currentDeckId}`)
         .then((response) => {
             const data = response.data;
             updateDeckIdDisplay(
@@ -131,7 +133,7 @@ const [needReload, setNeedReload] = useState(true)
         let defense2Data
 
         const raceDisplayData = await axios
-        .get(`http://localhost:3001/api/race/${deckIdDisplay.race_id}`)
+        .get(`${baseUrl}/api/race/${deckIdDisplay.race_id}`)
         .then((response) => {
             raceData=response.data
             return response
@@ -141,7 +143,7 @@ const [needReload, setNeedReload] = useState(true)
         })
 
         const attack1DisplayData = await axios
-        .get(`http://localhost:3001/api/attackUnit/find/${deckIdDisplay.attack1_id}`)
+        .get(`${baseUrl}/api/attackUnit/find/${deckIdDisplay.attack1_id}`)
         .then((response) => {
             attack1Data=response.data
             return response
@@ -151,7 +153,7 @@ const [needReload, setNeedReload] = useState(true)
         })
 
         const attack2DisplayData = await axios
-        .get(`http://localhost:3001/api/attackUnit/find/${deckIdDisplay.attack2_id}`)
+        .get(`${baseUrl}/api/attackUnit/find/${deckIdDisplay.attack2_id}`)
         .then((response) => {
             attack2Data=response.data
             return response
@@ -161,7 +163,7 @@ const [needReload, setNeedReload] = useState(true)
         })
 
         const attack3DisplayData = await axios
-        .get(`http://localhost:3001/api/attackUnit/find/${deckIdDisplay.attack3_id}`)
+        .get(`${baseUrl}/api/attackUnit/find/${deckIdDisplay.attack3_id}`)
         .then((response) => {
             attack3Data=response.data
             return response
@@ -171,7 +173,7 @@ const [needReload, setNeedReload] = useState(true)
         })
 
         const defense1DisplayData = await axios
-        .get(`http://localhost:3001/api/defenseUnit/find/${deckIdDisplay.defense1_id}`)
+        .get(`${baseUrl}/api/defenseUnit/find/${deckIdDisplay.defense1_id}`)
         .then((response) => {
             defense1Data=response.data
             return response
@@ -181,7 +183,7 @@ const [needReload, setNeedReload] = useState(true)
         })
 
         const defense2DisplayData = await axios
-        .get(`http://localhost:3001/api/defenseUnit/find/${deckIdDisplay.defense2_id}`)
+        .get(`${baseUrl}/api/defenseUnit/find/${deckIdDisplay.defense2_id}`)
         .then((response) => {
             defense2Data=response.data
             return response
@@ -205,7 +207,7 @@ const [needReload, setNeedReload] = useState(true)
 
   const deleteDeck = async () => {
     const deckDelete = await axios
-    .delete(`http://localhost:3001/api/deck/${currentDeckId}`)
+    .delete(`${baseUrl}/api/deck/${currentDeckId}`)
     .then((response) => {
         initiateDeletedDeck()
        
@@ -309,7 +311,7 @@ const [needReload, setNeedReload] = useState(true)
   const createDeck = async (e) => {
     if(currentUser.deck_id){
         const updateDeckData = await axios
-        .put(`http://localhost:3001/api/deck/${currentDeckId}`,deckForm)
+        .put(`${baseUrl}/api/deck/${currentDeckId}`,deckForm)
         .then((response) => {
             setNeedReload(true)
             initiateManageDeck()
@@ -320,7 +322,7 @@ const [needReload, setNeedReload] = useState(true)
         })
     } else{
         const createDeckData = await axios
-        .post(`http://localhost:3001/api/deck`,deckForm)
+        .post(`${baseUrl}/api/deck`,deckForm)
         .then((response) => {
             setNeedReload(true)
             return response;
@@ -343,7 +345,7 @@ const [needReload, setNeedReload] = useState(true)
 
   const getAllAttackUnitList = async () => {
     const attackUnitsData = await axios
-    .get(`http://localhost:3001/api/attackUnit/${raceSelected}`)
+    .get(`${baseUrl}/api/attackUnit/${raceSelected}`)
     .then((response) => {
         return response;
     })
@@ -357,7 +359,7 @@ const [needReload, setNeedReload] = useState(true)
 
   const getAllDefenseUnitList = async () => {
     const defenseUnitsData = await axios
-    .get(`http://localhost:3001/api/defenseUnit/${raceSelected}`)
+    .get(`${baseUrl}/api/defenseUnit/${raceSelected}`)
     .then((response) => {
         return response;
     })
@@ -371,7 +373,7 @@ const [needReload, setNeedReload] = useState(true)
 
   const getAllRacesData = async () => {
     const racesData = await axios
-      .get("http://localhost:3001/api/race/")
+      .get(`${baseUrl}/api/race/`)
       .then((response) => {
         return response;
       })

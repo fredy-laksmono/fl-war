@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Account = (props) => {
   let baseUrl = process.env.baseUrl || "http://localhost:3001"; // To-do: find a way to do it dynamically
-  baseUrl = "https://fl-war.herokuapp.com"; // To-do: Hardcoding for heroku deployment
+  baseUrl = "https://fl-war.herokuapp.com"; // Hardcoding for heroku deployment, remove this once found a way to do it dynamically
   const [playerDataState, updatePlayerData] = useState({
     name: "",
     id: "",

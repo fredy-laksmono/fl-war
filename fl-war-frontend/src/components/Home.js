@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Home = (params) => {
+  let baseUrl = process.env.baseUrl || "http://localhost:3001"; // To-do: find a way to do it dynamically
+  baseUrl = "https://fl-war.herokuapp.com"; // Hardcoding for heroku deployment, remove this once found a way to do it dynamically
   let navigate = useNavigate();
 
   let homeToRender;
@@ -29,7 +31,7 @@ const Home = (params) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newUser = await axios
-      .post("http://localhost:3001/api/newUser/", userFormState)
+      .post(`${baseUrl}/api/newUser/`, userFormState)
       .then((response) => {
         return response;
       })
