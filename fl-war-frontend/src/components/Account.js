@@ -16,6 +16,7 @@ const Account = (props) => {
   const { userId } = useParams();
 
   const check = async (id) => {
+    console.log(PORT);
     const userObject = await axios
       .get(`http://localhost:${PORT}/api/account/${id}`)
       .then((response) => {
