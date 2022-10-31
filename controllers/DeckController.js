@@ -23,10 +23,7 @@ const updateDeck = async (req, res) => {
 };
 
 const deleteDeck = async (req, res) => {
-  console.log(req.params.deckId);
   const deckData = await Deck.findById(req.params.deckId);
-  console.log("this is deckData at deleteDeck", deckData);
-  console.log("this is userId", deckData.user_id);
   const userData = await User.findByIdAndUpdate(
     deckData.user_id,
     {
@@ -34,7 +31,6 @@ const deleteDeck = async (req, res) => {
     },
     { new: true }
   );
-  console.log("this is userData", userData);
   const deletedDeckData = await Deck.deleteOne({ _id: req.params.deckId });
   res.send(deletedDeckData);
 };
