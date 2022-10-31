@@ -4,7 +4,7 @@ import Deck from "./Deck";
 import axios from "axios";
 
 const Account = (props) => {
-  const PORT = process.env.PORT || 3001;
+  const baseUrl = process.env.baseURL || "http://localhost:3001";
   const [playerDataState, updatePlayerData] = useState({
     name: "",
     id: "",
@@ -17,7 +17,7 @@ const Account = (props) => {
 
   const check = async (id) => {
     const userObject = await axios
-      .get(`http://localhost:${PORT}/api/account/${id}`)
+      .get(`${baseUrl}/api/account/${id}`)
       .then((response) => {
         updatePlayerObject(response.data);
         return response;
